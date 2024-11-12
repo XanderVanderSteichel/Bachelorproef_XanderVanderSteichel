@@ -17,31 +17,29 @@
 
 Deze bachelorproef richt zich op de automatisering van het orderproces van een website naar 3D-geprinte producten. Het doel is om een pipline te gaan ontwikkelen in python, die een Shopify API koppelt aan de API van Bambu Studio. Door dit toe te passen kan ervoor gezorgd worden dat er een geautomatiseerde workflow is. Hierdoor wordt een order zodra het besteld is, automatisch verwerkt en doorgegeven naar de 3D-printer, Zodat het product direct geprint kan worden zonder handmatige stappen.
 
-De doelgroep zijn mensen die een 3D-print Shopify-webshop  hebben en die deze stappen niet meer manueel willen uitvoeren. Deze oplossing biedt een efficiëntere werking alsook een snellere en gepersonaliseerde productie.
+De doelgroep zijn mensen die een 3D-print Shopify-webshop hebben en die deze stappen niet meer manueel willen uitvoeren. Deze oplossing biedt een efficiëntere werking alsook een snellere en gepersonaliseerde productie.
 
 Deze doelgroep heeft vaak nog veel manueel werk om orders van een website door te sturen naar hun printers, wat tijd, geld en efficiëntie kost . De onderzoeksvraag is daarom ook: Hoe kan een geautomatiseerde pipeline worden ontwikkeld die orders vanuit een website automatisch omzet naar een opdracht voor een 3D-printer?
 
-Het doel van dit onderzoek is het ontwikkelen van een pipeline die orders van een Shopify-webshop automatisch doorstuurt naar een 3D-printer doormiddel van de API's van Shopify en Bambu Studio. Als resultaat is er een werkend prototype, waarbij nieuwe orders automatisch worden verwerkt naar de 3D-printer.
+Het doel van dit onderzoek is het ontwikkelen van een pipeline die orders van een Shopify-webshop automatisch doorstuurt naar een 3D-printer doormiddel van de API's van Shopify en Bambu Studio. Als resultaat is er een werkend prototype, waarbij nieuwe orders automatisch worden verwerkt naar de 3D-printer. Er wordt ook een Shopify-webshop opgezet als proof-of-concept en een Bambulab  X1C Printer met AMS zal gebruikt worden voor het prototype.
 
 
+%Waarover zal je bachelorproef gaan? Introduceer het thema en zorg dat volgende zaken zeker duidelijk aanwezig zijn:
 
+%\begin{itemize}
+ % \item kaderen thema
+ %\item de doelgroep
+  %\item de probleemstelling en (centrale) onderzoeksvraag
+ %\item de onderzoeksdoelstelling
+%\end{itemize}
 
-Waarover zal je bachelorproef gaan? Introduceer het thema en zorg dat volgende zaken zeker duidelijk aanwezig zijn:
+%Denk er aan: een typische bachelorproef is \textit{toegepast onderzoek}, wat betekent dat je start vanuit een concrete probleemsituatie in bedrijfscontext, een \textbf{casus}. Het is belangrijk om je onderwerp goed af te bakenen: je gaat voor die \textit{ene specifieke probleemsituatie} op zoek naar een goede oplossing, op basis van de huidige kennis in het vakgebied.
 
-\begin{itemize}
-  \item kaderen thema
-  \item de doelgroep
-  \item de probleemstelling en (centrale) onderzoeksvraag
-  \item de onderzoeksdoelstelling
-\end{itemize}
+%De doelgroep moet ook concreet en duidelijk zijn, dus geen algemene of vaag gedefinieerde groepen zoals \emph{bedrijven}, \emph{developers}, \emph{Vlamingen}, enz. Je richt je in elk geval op it-professionals, een bachelorproef is geen populariserende tekst. Eén specifiek bedrijf (die te maken hebben met een concrete probleemsituatie) is dus beter dan \emph{bedrijven} in het algemeen.
 
-Denk er aan: een typische bachelorproef is \textit{toegepast onderzoek}, wat betekent dat je start vanuit een concrete probleemsituatie in bedrijfscontext, een \textbf{casus}. Het is belangrijk om je onderwerp goed af te bakenen: je gaat voor die \textit{ene specifieke probleemsituatie} op zoek naar een goede oplossing, op basis van de huidige kennis in het vakgebied.
+%Formuleer duidelijk de onderzoeksvraag! De begeleiders lezen nog steeds te veel voorstellen waarin we geen onderzoeksvraag terugvinden.
 
-De doelgroep moet ook concreet en duidelijk zijn, dus geen algemene of vaag gedefinieerde groepen zoals \emph{bedrijven}, \emph{developers}, \emph{Vlamingen}, enz. Je richt je in elk geval op it-professionals, een bachelorproef is geen populariserende tekst. Eén specifiek bedrijf (die te maken hebben met een concrete probleemsituatie) is dus beter dan \emph{bedrijven} in het algemeen.
-
-Formuleer duidelijk de onderzoeksvraag! De begeleiders lezen nog steeds te veel voorstellen waarin we geen onderzoeksvraag terugvinden.
-
-Schrijf ook iets over de doelstelling. Wat zie je als het concrete eindresultaat van je onderzoek, naast de uitgeschreven scriptie? Is het een proof-of-concept, een rapport met aanbevelingen, \ldots Met welk eindresultaat kan je je bachelorproef als een succes beschouwen?
+%Schrijf ook iets over de doelstelling. Wat zie je als het concrete eindresultaat van je onderzoek, naast de uitgeschreven scriptie? Is het een proof-of-concept, een rapport met aanbevelingen, \ldots Met welk eindresultaat kan je je bachelorproef als een succes beschouwen?
 
 %---------- Stand van zaken ---------------------------------------------------
 
@@ -71,25 +69,76 @@ Je mag deze sectie nog verder onderverdelen in subsecties als dit de structuur v
 \section{Methodologie}%
 \label{sec:methodologie}
 
-Hier beschrijf je hoe je van plan bent het onderzoek te voeren. Welke onderzoekstechniek ga je toepassen om elk van je onderzoeksvragen te beantwoorden? Gebruik je hiervoor literatuurstudie, interviews met belanghebbenden (bv.~voor requirements-analyse), experimenten, simulaties, vergelijkende studie, risico-analyse, PoC, \ldots?
+Voor de methodologie rond automatisering van het orderproces van website naar 3D-geprinte producten zal het proces iteratief verlopen. Er zijn verschillende fasen, elke fase heeft zijn specifieke doelstelling, deliverables en deadlines. Tussen de fase word er samengezeten met de Co-promotor die feedback geeft en kan bijsturen waar nodig. Ook is het de bedoeling dat deze pipline zal draaien op mac en windows 
 
-Valt je onderwerp onder één van de typische soorten bachelorproeven die besproken zijn in de lessen Research Methods (bv.\ vergelijkende studie of risico-analyse)? Zorg er dan ook voor dat we duidelijk de verschillende stappen terug vinden die we verwachten in dit soort onderzoek!
+Fase 1: Literatuurstudie (deadline DAG MAAND)
+In deze fase zal er verder onderzoek gedaan worden naar gelijkaardige toepassingen die al reeds bestaan. De deliverable voor deze fase is ervoor zorgen dat er een lijst wordt gemaakt met tools die gebruikt zullen worden voor de automatisering.
 
-Vermijd onderzoekstechnieken die geen objectieve, meetbare resultaten kunnen opleveren. Enquêtes, bijvoorbeeld, zijn voor een bachelorproef informatica meestal \textbf{niet geschikt}. De antwoorden zijn eerder meningen dan feiten en in de praktijk blijkt het ook bijzonder moeilijk om voldoende respondenten te vinden. Studenten die een enquête willen voeren, hebben meestal ook geen goede definitie van de populatie, waardoor ook niet kan aangetoond worden dat eventuele resultaten representatief zijn.
+Fase 2: Proof of Concept (PoC) (deadline DAG MAAND)
+Hier wordt er al een eerste PoC opgezet om de haalbaarheid van de oplossing aan te tonen. Er wordt een eerste versie gebouwd in Python, waarbij de basisfunctionaliteiten worden geïmplementeerd: Een order ontvangen vanuit de Shopify API en deze doorsturen naar de Bambu Studio API. Hierdoor is het aangettond dat dit concept werkt en is er al een technishe basis om verder op te bouwen.
 
-Uit dit onderdeel moet duidelijk naar voor komen dat je bachelorproef ook technisch voldoen\-de diepgang zal bevatten. Het zou niet kloppen als een bachelorproef informatica ook door bv.\ een student marketing zou kunnen uitgevoerd worden.
+Fase 3: Experimenten en Testen (deadline DAG MAAND)
+Na de PoC is het de bedoeling om de pipline uitgebreid te gaan testen. Hierbij wordt er getest op stress- of laadtest als er meerdere orders tegelijk binnekomen. Ook testen we de foutafhandeling zodat er zeker geen onverwachte situaties kunnen opduiken. We testen bvb: Als een file mislukt met het versturen wat gebeurd er dan?
 
-Je beschrijft ook al welke tools (hardware, software, diensten, \ldots) je denkt hiervoor te gebruiken of te ontwikkelen.
+Fase 4: Iteratieve Ontwikkeling en Optimalisatie (deadline DAG MAAND )
+Op basis van de resultaten van vorige fasen kan de pipline geoptimaliseerd worden in de code en API-integraties. Hier worden ook weer steeds testen uitgevoerd of het daadwerkelijk in orde is. En deze fase eindigt met een eindproduct dat al een opbouw  is voor de automatisatie te gaan verkopen.  
 
-Probeer ook een tijdschatting te maken. Hoe lang zal je met elke fase van je onderzoek bezig zijn en wat zijn de concrete \emph{deliverables} in elke fase?
+Tools:
+Python: Voor het bouwen van de pipeline en het uitvoeren van API-aanroepen.
+
+Shopify API en Bambu Studio API: Om orders te ontvangen en printopdrachten door te sturen.
+
+GitHub: Voor versiebeheer van de code en documentatie.
+
+Postman: Voor het testen van API-aanroepen tijdens de ontwikkeling.
+
+3D-printer Bambulab X1C: Voor het fysiek testen van het printproces.
+
+Dit is de verwachte lijst van functionele requi-
+rements voor de applicatie:
+* MUST
+- Order moet kunnen opgehaald worden  via de API
+- Juiste file moet kunnen opgehaald worden
+- printopdracht moet kunnen gestart worden via de API
+
+*COULD
+- Als meerdere orders binnenkomen deze samen plaatsen op het printbed indien mogelijk.
+
+
+Planning en deliverables
+
+Gemaakte flowchart
+
+eventueel de gaint chart.
+
+%Hier beschrijf je hoe je van plan bent het onderzoek te voeren. Welke onderzoekstechniek ga je toepassen om elk van je onderzoeksvragen te beantwoorden? Gebruik je hiervoor literatuurstudie, interviews met belanghebbenden (bv.~voor requirements-analyse), experimenten, simulaties, vergelijkende studie, risico-analyse, PoC, \ldots?
+
+%Valt je onderwerp onder één van de typische soorten bachelorproeven die besproken zijn in de lessen Research Methods (bv.\ vergelijkende studie of risico-analyse)? Zorg er dan ook voor dat we duidelijk de verschillende stappen terug vinden die we verwachten in dit soort onderzoek!
+
+%Vermijd onderzoekstechnieken die geen objectieve, meetbare resultaten kunnen opleveren. Enquêtes, bijvoorbeeld, zijn voor een bachelorproef informatica meestal \textbf{niet geschikt}. De antwoorden zijn eerder meningen dan feiten en in de praktijk blijkt het ook bijzonder moeilijk om voldoende respondenten te vinden. Studenten die een enquête willen voeren, hebben meestal ook geen goede definitie van de populatie, waardoor ook niet kan aangetoond worden dat eventuele resultaten representatief zijn.
+
+%Uit dit onderdeel moet duidelijk naar voor komen dat je bachelorproef ook technisch voldoen\-de diepgang zal bevatten. Het zou niet kloppen als een bachelorproef informatica ook door bv.\ een student marketing zou kunnen uitgevoerd worden.
+
+%Je beschrijft ook al welke tools (hardware, software, diensten, \ldots) je denkt hiervoor te gebruiken of te ontwikkelen.
+
+%Probeer ook een tijdschatting te maken. Hoe lang zal je met elke fase van je onderzoek bezig zijn en wat zijn de concrete \emph{deliverables} in elke fase?
 
 %---------- Verwachte resultaten ----------------------------------------------
 \section{Verwacht resultaat, conclusie}%
 \label{sec:verwachte_resultaten}
 
-Hier beschrijf je welke resultaten je verwacht. Als je metingen en simulaties uitvoert, kan je hier al mock-ups maken van de grafieken samen met de verwachte conclusies. Benoem zeker al je assen en de onderdelen van de grafiek die je gaat gebruiken. Dit zorgt ervoor dat je concreet weet welk soort data je moet verzamelen en hoe je die moet meten.
+Met deze bachelorproef wordt er verwacht een werkende Python-Pipeline op te leveren die orders ophaalt en verwerkt zodat de printer deze juist ontvangt. De resultaten zullen de functionaliteit en efficiëntie aantonen door het verwerken van orders zonder manuele stappen.
 
-Wat heeft de doelgroep van je onderzoek aan het resultaat? Op welke manier zorgt jouw bachelorproef voor een meerwaarde?
+Verwachte resultaten:
+*Tijdwinst per Order
+*Succespercentage van Orderverwerking
+*Kostenbesparing per Maand
 
-Hier beschrijf je wat je verwacht uit je onderzoek, met de motivatie waarom. Het is \textbf{niet} erg indien uit je onderzoek andere resultaten en conclusies vloeien dan dat je hier beschrijft: het is dan juist interessant om te onderzoeken waarom jouw hypothesen niet overeenkomen met de resultaten.
+Meerwaarde voor de Doelgroep
+De automatisering van het orderproces biedt een meerwaarde aan mensen die een 3D-print Shopify-webshop hebben, door hun efficiëntie te verbeteren. Ook zorgt het ervoor dat de werkdruk verminderd wordt wat beter is voor de eigenaren. Ook heeft het potentieel om een volwaardig product te worden dat op de markt kan worden gelanceerd. Door middel van klantenfeedback kan er dan verbetering uitgevoerd worden zodat de applicatie steeds up-to-date blijft.
+%Hier beschrijf je welke resultaten je verwacht. Als je metingen en simulaties uitvoert, kan je hier al mock-ups maken van de grafieken samen met de verwachte conclusies. Benoem zeker al je assen en de onderdelen van de grafiek die je gaat gebruiken. Dit zorgt ervoor dat je concreet weet welk soort data je moet verzamelen en hoe je die moet meten.
+
+%Wat heeft de doelgroep van je onderzoek aan het resultaat? Op welke manier zorgt jouw bachelorproef voor een meerwaarde?
+
+%Hier beschrijf je wat je verwacht uit je onderzoek, met de motivatie waarom. Het is \textbf{niet} erg indien uit je onderzoek andere resultaten en conclusies vloeien dan dat je hier beschrijft: het is dan juist interessant om te onderzoeken waarom jouw hypothesen niet overeenkomen met de resultaten.
 
