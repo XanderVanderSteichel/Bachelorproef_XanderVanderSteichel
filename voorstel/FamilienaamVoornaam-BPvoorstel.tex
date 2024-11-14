@@ -8,6 +8,9 @@
 % Let op: kan enkel na toestemming van de bachelorproefcoördinator!
 \documentclass{hogent-article}
 
+\usepackage{float}
+\usepackage{pgfgantt}
+
 % Invoegen bibliografiebestand
 \addbibresource{voorstel.bib}
 
@@ -65,5 +68,60 @@
 \input{voorstel-inhoud}
 
 \printbibliography[heading=bibintoc]
+
+
+% First figure: The Flowchart Image
+\begin{figure}[H]  % Use [H] to prevent floating
+    \centering
+    \includegraphics[width=0.5\textwidth]{Flowchart.png}  % Adjust width if necessary
+    \caption{Flowchart van verschillende fasen en deliverables van de bachelorproef.}
+    \label{fig:flowchart}  % Label for referencing
+\end{figure}
+
+\vspace{1em}  % Add some space between figures
+
+% Second figure: The Gantt Chart
+\begin{figure}[H]  % Use [H] to prevent floating
+    \centering
+    \resizebox{\textwidth}{!}{%
+        \begin{ganttchart}[
+            vgrid,
+            hgrid,
+            x unit=0.1cm,
+            time slot format=isodate,
+            compress calendar
+            ]{2025-02-01}{2025-05-30}
+            
+            \gantttitlecalendar{year, month=name} \\
+            
+            % Fase 1: Literatuurstudie
+            \ganttbar[
+            progress=70,
+            name=litstudie
+            ]{Fase 1: Literatuurstudie}{2025-02-01}{2025-02-20} \\
+            
+            % Fase 2: Proof of Concept (PoC)
+            \ganttbar[
+            progress=0,
+            name=poc
+            ]{Fase 2: Proof of Concept}{2025-02-21}{2025-03-10} \\
+            
+            % Fase 3: Experimenten en Testen
+            \ganttbar[
+            progress=0,
+            name=testen
+            ]{Fase 3: Experimenten en Testen}{2025-03-11}{2025-05-02} \\
+            
+            % Fase 4: Iteratieve Ontwikkeling en Optimalisatie
+            \ganttbar[
+            progress=0,
+            name=optimalisatie
+            ]{Fase 4: Optimalisatie}{2025-05-03}{2025-05-30} \\
+            
+        \end{ganttchart}
+    }
+    \caption{Project Planning Gantt Chart}
+    \label{fig:ganttchart}  % Label for referencing
+\end{figure}
 
 \end{document}

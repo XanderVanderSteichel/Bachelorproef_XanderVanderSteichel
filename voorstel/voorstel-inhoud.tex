@@ -15,13 +15,13 @@
 \section{Inleiding}%
 \label{sec:inleiding}
 
-Deze bachelorproef richt zich op de automatisering van het orderproces van een website naar 3D-geprinte producten. Het doel is om een pipline te gaan ontwikkelen in python, die een Shopify API koppelt aan de API van Bambu Studio. Door dit toe te passen kan ervoor gezorgd worden dat er een geautomatiseerde workflow is. Hierdoor wordt een order zodra het besteld is, automatisch verwerkt en doorgegeven naar de 3D-printer, Zodat het product direct geprint kan worden zonder handmatige stappen.
-
-De doelgroep zijn mensen die een 3D-print Shopify-webshop hebben en die deze stappen niet meer manueel willen uitvoeren. Deze oplossing biedt een efficiëntere werking alsook een snellere en gepersonaliseerde productie.
-
-Deze doelgroep heeft vaak nog veel manueel werk om orders van een website door te sturen naar hun printers, wat tijd, geld en efficiëntie kost . De onderzoeksvraag is daarom ook: Hoe kan een geautomatiseerde pipeline worden ontwikkeld die orders vanuit een website automatisch omzet naar een opdracht voor een 3D-printer?
-
-Het doel van dit onderzoek is het ontwikkelen van een pipeline die orders van een Shopify-webshop automatisch doorstuurt naar een 3D-printer doormiddel van de API's van Shopify en Bambu Studio. Als resultaat is er een werkend prototype, waarbij nieuwe orders automatisch worden verwerkt naar de 3D-printer. Er wordt ook een Shopify-webshop opgezet als proof-of-concept en een Bambulab  X1C Printer met AMS zal gebruikt worden voor het prototype.
+Deze bachelorproef richt zich op de automatisering van het orderproces op een website naar 3D-geprinte producten. Het doel is om een pipeline te gaan ontwikkelen in python, die een Shopify-API koppelt aan de API van Bambu Studio. Door dit toe te passen kan ervoor gezorgd worden dat er een geautomatiseerde workflow is. Hierdoor wordt een order, zodra het besteld is, automatisch verwerkt en doorgegeven naar de 3D-printer, Zodat het product direct geprint kan worden zonder handmatige stappen.
+\vspace{1em}
+De doelgroep zijn mensen die een 3D-print Shopify webshop hebben en die deze stappen niet meer manueel willen uitvoeren. Deze oplossing biedt een efficiëntere werking alsook een snellere en gepersonaliseerde productie. Het onderzoek past dan niet echt bij grootschalige bedrijven maar daar zijn al bestaande tools voor dat uitgelegd zullen worden in de literatuurstudie.
+\vspace{1em}
+Deze doelgroep heeft vaak nog veel manueel werk om orders van een website door te sturen naar hun printers, wat tijd, geld en efficiëntie kost . De onderzoeksvraag is daarom ook: Hoe kan een geautomatiseerde Pipeline worden ontwikkeld die orders vanuit een website automatisch omzet naar een opdracht voor een 3D-printer?
+\vspace{1em}
+Het doel van dit onderzoek is het ontwikkelen van een pipeline die orders van een Shopify-webshop automatisch doorstuurt naar een 3D-printer door middel van de APIs van Shopify en Bambu Studio. Als resultaat is er een werkend prototype, waarbij nieuwe orders automatisch worden verwerkt naar de 3D-printer. Er wordt ook een Shopify-webshop opgezet als proof-of-concept en een Bambu Lab  X1C Printer met AMS zal gebruikt worden voor het prototype. pipeline, APIs en de printer worden besproken in de literatuurstudie.
 
 
 %Waarover zal je bachelorproef gaan? Introduceer het thema en zorg dat volgende zaken zeker duidelijk aanwezig zijn:
@@ -46,15 +46,55 @@ Het doel van dit onderzoek is het ontwikkelen van een pipeline die orders van ee
 \section{Literatuurstudie}%
 \label{sec:literatuurstudie}
 
-Hier beschrijf je de \emph{state-of-the-art} rondom je gekozen onderzoeksdomein, d.w.z.\ een inleidende, doorlopende tekst over het onderzoeksdomein van je bachelorproef. Je steunt daarbij heel sterk op de professionele \emph{vakliteratuur}, en niet zozeer op populariserende teksten voor een breed publiek. Wat is de huidige stand van zaken in dit domein, en wat zijn nog eventuele open vragen (die misschien de aanleiding waren tot je onderzoeksvraag!)?
+De orderverwerking binnen 3D-printproductie is een proces dat bijdraagt aan de efficiëntie en consistentie van productie. Kleinschalige e-commerce bedrijven werken vaak met handmatige methoden voor het verwerken van orders, zoals het controleren of er  nieuwe bestellingen zijn binnengekomen en vervolgens te verwerken, zodat de printer kan starten. Vaak worden er ook Excel-bestanden gebruikt om orders bij te houden, wat tijdrovend en foutgevoelig kan zijn. Door de voortdurende ontwikkeling van technologie is het automatiseren van deze processen interessant. Zo kan er een proces worden opgezet dat dit met behulp van een Pipeline met API-integraties regelt. Dit vermindert fouten en versnelt de bedrijfsvoering. 
 
-Je mag de titel van deze sectie ook aanpassen (literatuurstudie, stand van zaken, enz.). Zijn er al gelijkaardige onderzoeken gevoerd? Wat concluderen ze? Wat is het verschil met jouw onderzoek?
+\subsection{HP Digital Manufacturing Network}%
 
-Verwijs bij elke introductie van een term of bewering over het domein naar de vakliteratuur, bijvoorbeeld~\autocite{Hykes2013}! Denk zeker goed na welke werken je refereert en waarom.
+HP heeft een oplossing ontwikkeld voor grootschalige bedrijven waarmee veel geautomatiseerd kan worden. Dit netwerk stelt ze in staat een groot deel van hun productie te gaan automatiseren. Ook helpt het voor de kosten van personeel en algemeen werk te verlagen. Dit maakt snelle innovatie, een snellere time-to-market, gedistribueerde productie en een slankere toeleveringsketen mogelijk~\autocite{hp3DprintingNetwork }. Maar met het onderzoek wordt er meer naar kleinschalige bedrijven gekeken zoals e-commerce. Hierdoor is het meer uniek, en zorgt het ervoor dat het betaalbaarder wordt.
 
-Draag zorg voor correcte literatuurverwijzingen! Een bronvermelding hoort thuis \emph{binnen} de zin waar je je op die bron baseert, dus niet er buiten! Maak meteen een verwijzing als je gebruik maakt van een bron. Doe dit dus \emph{niet} aan het einde van een lange paragraaf. Baseer nooit teveel aansluitende tekst op eenzelfde bron.
 
-Als je informatie over bronnen verzamelt in JabRef, zorg er dan voor dat alle nodige info aanwezig is om de bron terug te vinden (zoals uitvoerig besproken in de lessen Research Methods).
+
+\subsection{Vergelijkende studies}%
+
+Er zijn al een aantal verschillende vergelijkbare studies die zich richten op de automatisering van productie binnen 3D-printen. In een onderzoek van Maarten van Welsem bespreekt hij wat de impact is van 3D-printtechnologieën op de supply chain. Het beschrijft hoe automatisering een grotere flexibiliteit kan bieden, vooral voor reserveonderdelen en ondemand productie~\autocite{emerce3DprintSupplyChain}. Ook beschrijft een artikel van 3D Print Magazine hoe de automatisering binnen Europese 3D-printbedrijven hen helpt om mee te kunnen met andere bedrijven, door efficiënt aan de slag te gaan met complexe productieschema's. Ze hebben een grootschalig bedrijven en werken maar met 12 personen om al die printers te besturen door de automatisatie~\autocite{3dprintmagAutomation}. 
+
+
+\subsection{Pipeline}%
+
+Een Pipeline is een manier om een ​​reeks bewerkingen of functies te organiseren die gegevens verwerken. De uitvoer van de ene bewerking wordt de invoer van de volgende, enzovoort, totdat het uiteindelijke resultaat is verkregen~\autocite{pythonPipelinesThakur}. In dit onderzoek word er gewerkt met een Pipline van Jenkins. Het is in principe een automatiseringsengine die een aantal automatiseringspatronen ondersteunt. Pipeline voegt een krachtige set automatiseringstools toe aan Jenkins, die use cases ondersteunen die variëren van eenvoudige continue integratie tot uitgebreide CD-pipelines~\autocite{jenkinsPipeline}. Ook hier word er nog verder onderzoek gedaan naar hoe de pipeline altijd zal draaien en waar exact dat is nog een open vraag.
+
+\subsection{API}%
+
+Het gebruik van API’s is ook essentieel, zo gebruiken we de Bambu Labs-API, die biedt een Python API voor interactie met Bambu Lab 3D Printers. Het kan: 
+
+\begin{itemize}
+\item Verbind en bedien Bambu Lab 3D-printers programmatisch. 
+\item Houd de printerstatus in realtime in de gaten. 
+\item Voer opdrachten uit en beheer afdruktaken via Python-code. 
+\item Eenvoudige installatie en integratie met Python-omgevingen. 
+\end{itemize}
+
+Het kan bijvoorbeeld met het commando \texttt{bambulabs\_api.Printer.start\_print} de printer starten als  de juiste variabelen meegegeven worden~\autocite{bambulabsAPI}.Hier zit ook nog een open vraag aan voor het ophalen van het document. Dat moet nog verder onderzocht worden hoe dat in zijn werking gaat maar dat zou in de testfase gebeuren.  Er is ook de Shopify API nodig voor de bestellingen te volgen. Dat is de Airbyte Shopify Loader dit zorgt ervoor dat de inkomende bestellingen geladen kunnen worden~\autocite{ilamaIndexShopify}. 
+
+
+
+\subsection{Shopify}%
+
+Uit een case study word Shopify beschreven als de allesomvattende top e-commerce oplossing met uitgebreide functies, één van de snelste en gemakkelijkste platforms om te gebruiken en een online winkel te beginnen~\autocite{bang2024}. Dit is iets zeer interessant om een basis webshop met te bouwen. Het is een heel gekende e-commerce en wordt dus veel gebruikt voor die doeleinden. Bij dit onderzoek zullen een aantal files in de webshop te koop gezet worden.
+
+\subsection{BambuLab}%
+
+Dit is een merk dat zich specialiseert in 3D-printers. Voor het onderzoek word er gewerkt met een Bambu Lab X1C met AMS. Deze printer heeft veel mogelijkheden voor soorten materiaal waarmee het kan printen. Ook heeft het een AMS dat is een spoelhouder de 4 spoelen met plastiek aanstuurt zodat je in meerdere kleuren kan printer. Door de API te gebruiken wordt er verwacht dat er een bestand wordt meegegeven, dat ervoor zorgt dat het geprint te kan worden. Met Bambu studio kan je je bestand inladen en deze gaan slicen naar gcode. Kort gezegd betekent "slicen" van uw 3D-model dat u uw ontwerp (in .STL- of .3MF-formaat) in afzonderlijke lagen snijdt. De software genereert vervolgens het gereedschapspad (.gcode) dat de printer voor het printen zal gebruiken~\autocite{herrickLibrarySlicing}. Hierdoor weet de printer hoe hij aan de slag kan gaan en zo kan het in deze automatisatie gebruikt gaan worden. 
+
+%Hier beschrijf je de \emph{state-of-the-art} rondom je gekozen onderzoeksdomein, d.w.z.\ een inleidende, doorlopende tekst over het onderzoeksdomein van je bachelorproef. Je steunt daarbij heel sterk op de professionele \emph{vakliteratuur}, en niet zozeer op populariserende teksten voor een breed publiek. Wat is de huidige stand van zaken in dit domein, en wat zijn nog eventuele open vragen (die misschien de aanleiding waren tot je onderzoeksvraag!)?
+
+%Je mag de titel van deze sectie ook aanpassen (literatuurstudie, stand van zaken, enz.). Zijn er al gelijkaardige onderzoeken gevoerd? Wat concluderen ze? Wat is het verschil met jouw onderzoek?
+
+%Verwijs bij elke introductie van een term of bewering over het domein naar de vakliteratuur, bijvoorbeeld~\autocite{Hykes2013}! Denk zeker goed na welke werken je refereert en waarom.
+
+%Draag zorg voor correcte literatuurverwijzingen! Een bronvermelding hoort thuis \emph{binnen} de zin waar je je op die bron baseert, dus niet er buiten! Maak meteen een verwijzing als je gebruik maakt van een bron. Doe dit dus \emph{niet} aan het einde van een lange paragraaf. Baseer nooit teveel aansluitende tekst op eenzelfde bron.
+
+%Als je informatie over bronnen verzamelt in JabRef, zorg er dan voor dat alle nodige info aanwezig is om de bron terug te vinden (zoals uitvoerig besproken in de lessen Research Methods).
 
 % Voor literatuurverwijzingen zijn er twee belangrijke commando's:
 % \autocite{KEY} => (Auteur, jaartal) Gebruik dit als de naam van de auteur
@@ -63,53 +103,84 @@ Als je informatie over bronnen verzamelt in JabRef, zorg er dan voor dat alle no
 %   functie heeft in de zin (bv. ``Uit onderzoek door Doll & Hill (1954) bleek
 %   ...'')
 
-Je mag deze sectie nog verder onderverdelen in subsecties als dit de structuur van de tekst kan verduidelijken.
+%Je mag deze sectie nog verder onderverdelen in subsecties als dit de structuur van de tekst kan verduidelijken.
 
 %---------- Methodologie ------------------------------------------------------
 \section{Methodologie}%
 \label{sec:methodologie}
 
-Voor de methodologie rond automatisering van het orderproces van website naar 3D-geprinte producten zal het proces iteratief verlopen. Er zijn verschillende fasen, elke fase heeft zijn specifieke doelstelling, deliverables en deadlines. Tussen de fase word er samengezeten met de Co-promotor die feedback geeft en kan bijsturen waar nodig. Ook is het de bedoeling dat deze pipline zal draaien op mac en windows 
+Voor de methodologie rond automatisering van het orderproces van website naar 3D-geprinte producten zal het proces iteratief verlopen. Er zijn verschillende fasen, elke fase heeft zijn specifieke doelstelling, deliverables en deadlines. Tussen de fase word er samengezeten met de Co-promotor die feedback geeft en kan bijsturen waar nodig. Ook is het de bedoeling dat deze pipeline zal draaien op Mac en Windows 
+\vspace{2em}
 
-Fase 1: Literatuurstudie (deadline DAG MAAND)
+\textbf{Fase 1: Literatuurstudie}\\
+\textbf{Deadline: 07 maart 2025)}\\\\
 In deze fase zal er verder onderzoek gedaan worden naar gelijkaardige toepassingen die al reeds bestaan. De deliverable voor deze fase is ervoor zorgen dat er een lijst wordt gemaakt met tools die gebruikt zullen worden voor de automatisering.
+\vspace{2em}
 
-Fase 2: Proof of Concept (PoC) (deadline DAG MAAND)
-Hier wordt er al een eerste PoC opgezet om de haalbaarheid van de oplossing aan te tonen. Er wordt een eerste versie gebouwd in Python, waarbij de basisfunctionaliteiten worden geïmplementeerd: Een order ontvangen vanuit de Shopify API en deze doorsturen naar de Bambu Studio API. Hierdoor is het aangettond dat dit concept werkt en is er al een technishe basis om verder op te bouwen.
+\textbf{Fase 2: Proof of Concept (PoC)}\\
+\textbf{Deadline: 28 maart 2025)}\\\\
+Hier wordt er al een eerste PoC opgezet om de haalbaarheid van de oplossing aan te tonen. Er wordt een eerste versie gebouwd in Python, waarbij de basisfunctionaliteiten worden geïmplementeerd: Een order ontvangen vanuit de Shopify API en deze doorsturen naar de Bambu Studio API. Hierdoor is het aangetoond dat dit concept werkt en is er al een technische basis om verder op te bouwen.
+\vspace{1em}
 
-Fase 3: Experimenten en Testen (deadline DAG MAAND)
-Na de PoC is het de bedoeling om de pipline uitgebreid te gaan testen. Hierbij wordt er getest op stress- of laadtest als er meerdere orders tegelijk binnekomen. Ook testen we de foutafhandeling zodat er zeker geen onverwachte situaties kunnen opduiken. We testen bvb: Als een file mislukt met het versturen wat gebeurd er dan?
+\textbf{Fase 3: Experimenten en Testen}\\
+\textbf{Deadline: 2 mei 2025)}\\\\
+Na de PoC is het de bedoeling om de pipeline uitgebreid te gaan testen. Hierbij wordt er getest op stress- of laadtest als er meerdere orders tegelijk binnenkomen. Ook testen we de foutafhandeling zodat er zeker geen onverwachte situaties kunnen opduiken. We testen bv.
+\begin{itemize}
+ \item Als een file mislukt met het versturen wat gebeurd er dan?
+ \item Wat als de printer zonder stroom valt?
+ \item Wat als er een printfout ontstaat?
+ \item Wat doen we als de printer klaar is?
+\end{itemize}
+Er zijn heel veel situaties die kunnen voorkomen daarom wordt er onderzocht wat er allemaal kan gebeuren.
+\vspace{1em}
 
-Fase 4: Iteratieve Ontwikkeling en Optimalisatie (deadline DAG MAAND )
-Op basis van de resultaten van vorige fasen kan de pipline geoptimaliseerd worden in de code en API-integraties. Hier worden ook weer steeds testen uitgevoerd of het daadwerkelijk in orde is. En deze fase eindigt met een eindproduct dat al een opbouw  is voor de automatisatie te gaan verkopen.  
+\textbf{Fase 4: Iteratieve Ontwikkeling en Optimalisatie}\\
+\textbf{Deadline: 16 mei 2025)}\\\\
+Op basis van de resultaten van vorige fasen kan de pipeline worden geoptimaliseerd in de code. Hier worden ook weer steeds testen uitgevoerd of het daadwerkelijk in orde is. En deze fase eindigt met een eindproduct dat al een opbouw  is voor de automatisatie op de markt te kunnen brengen.  
 
-Tools:
-Python: Voor het bouwen van de pipeline en het uitvoeren van API-aanroepen.
+\vspace{1em}
+\textbf{Tools:}\\
+\begin{itemize}
+\item Python: Voor het bouwen van de pipeline en het uitvoeren van API-aanroepen.
+\item Shopify API en Bambu Studio API: Om orders te ontvangen en printopdrachten door te sturen.
+\item GitHub: Voor versiebeheer van de code en documentatie.
+\item Postman: Voor het testen van API-aanroepen tijdens de ontwikkeling.
+\item 3D-printer Bambu Lab X1C: Voor het fysiek testen van het printproces.
+\item Jenkins Pipeline: Voor het automatiseren van de opstart en integratie van de pipeline.
+\end{itemize}
 
-Shopify API en Bambu Studio API: Om orders te ontvangen en printopdrachten door te sturen.
+\vspace{1em}
+\textbf{Dit is de verwachte lijst van functionele vereisten voor de applicatie:}\\
+\begin{itemize}
+    \item MUST
+    \begin{itemize}
+        \item Order moet kunnen opgehaald worden  via de API
+        \item Juiste file moet kunnen opgehaald worden
+        \item printopdracht moet kunnen gestart worden via de API
+    \end{itemize}
+    \item SHOULD
+    \begin{itemize}
+        \item communicatie naar eigenaar dat print gelsaagd is.
+    \end{itemize}
+    \item COULD
+    \begin{itemize}
+        \item Als meerdere orders binnenkomen deze samen plaatsen op het printbed indien mogelijk.
+    \end{itemize}
+\end{itemize}
 
-GitHub: Voor versiebeheer van de code en documentatie.
+\vspace{1em}
+\textbf{Planning en deliverables}
 
-Postman: Voor het testen van API-aanroepen tijdens de ontwikkeling.
+\begin{itemize}
+ \item Gemaakte flowchart
 
-3D-printer Bambulab X1C: Voor het fysiek testen van het printproces.
+Flowchart~\ref{fig:flowchart}
 
-Dit is de verwachte lijst van functionele requi-
-rements voor de applicatie:
-* MUST
-- Order moet kunnen opgehaald worden  via de API
-- Juiste file moet kunnen opgehaald worden
-- printopdracht moet kunnen gestart worden via de API
+ \item Gemaakte Gantt chart.
 
-*COULD
-- Als meerdere orders binnenkomen deze samen plaatsen op het printbed indien mogelijk.
+Gantt chart~\ref{fig:ganttchart}
+\end{itemize}
 
-
-Planning en deliverables
-
-Gemaakte flowchart
-
-eventueel de gaint chart.
 
 %Hier beschrijf je hoe je van plan bent het onderzoek te voeren. Welke onderzoekstechniek ga je toepassen om elk van je onderzoeksvragen te beantwoorden? Gebruik je hiervoor literatuurstudie, interviews met belanghebbenden (bv.~voor requirements-analyse), experimenten, simulaties, vergelijkende studie, risico-analyse, PoC, \ldots?
 
@@ -129,16 +200,24 @@ eventueel de gaint chart.
 
 Met deze bachelorproef wordt er verwacht een werkende Python-Pipeline op te leveren die orders ophaalt en verwerkt zodat de printer deze juist ontvangt. De resultaten zullen de functionaliteit en efficiëntie aantonen door het verwerken van orders zonder manuele stappen.
 
-Verwachte resultaten:
-*Tijdwinst per Order
-*Succespercentage van Orderverwerking
-*Kostenbesparing per Maand
+\vspace{1em}
+\textbf{Verwachte resultaten:}
+\begin{itemize}
+\item Tijdwinst per Order
+\item Succespercentage van Orderverwerking
+\item Kostenbesparing per Maand
+\end{itemize}
 
-Meerwaarde voor de Doelgroep
+\textbf{Meerwaarde voor de Doelgroep:}
 De automatisering van het orderproces biedt een meerwaarde aan mensen die een 3D-print Shopify-webshop hebben, door hun efficiëntie te verbeteren. Ook zorgt het ervoor dat de werkdruk verminderd wordt wat beter is voor de eigenaren. Ook heeft het potentieel om een volwaardig product te worden dat op de markt kan worden gelanceerd. Door middel van klantenfeedback kan er dan verbetering uitgevoerd worden zodat de applicatie steeds up-to-date blijft.
 %Hier beschrijf je welke resultaten je verwacht. Als je metingen en simulaties uitvoert, kan je hier al mock-ups maken van de grafieken samen met de verwachte conclusies. Benoem zeker al je assen en de onderdelen van de grafiek die je gaat gebruiken. Dit zorgt ervoor dat je concreet weet welk soort data je moet verzamelen en hoe je die moet meten.
 
 %Wat heeft de doelgroep van je onderzoek aan het resultaat? Op welke manier zorgt jouw bachelorproef voor een meerwaarde?
 
 %Hier beschrijf je wat je verwacht uit je onderzoek, met de motivatie waarom. Het is \textbf{niet} erg indien uit je onderzoek andere resultaten en conclusies vloeien dan dat je hier beschrijft: het is dan juist interessant om te onderzoeken waarom jouw hypothesen niet overeenkomen met de resultaten.
+
+
+
+
+
 
