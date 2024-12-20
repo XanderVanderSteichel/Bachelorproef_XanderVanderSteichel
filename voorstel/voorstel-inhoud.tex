@@ -15,14 +15,18 @@
 \section{Inleiding}%
 \label{sec:inleiding}
 
-Deze bachelorproef richt zich op de automatisering van het orderproces op een website naar 3D-geprinte producten. Het doel is om een pipeline te gaan ontwikkelen in python, die een Shopify-API koppelt aan de API van Bambu Studio. Door dit toe te passen kan ervoor gezorgd worden dat er een geautomatiseerde workflow is. Hierdoor wordt een order, zodra het besteld is, automatisch verwerkt en doorgegeven naar de 3D-printer. Zodat het product direct geprint kan worden zonder handmatige stappen.
+Deze bachelorproef richt zich op de automatisering van het orderproces op een website naar 3D-geprinte producten. Het doel is om een pipeline te ontwikkelen in Python die een Shopify-API koppelt aan de API van Bambu Studio. Door deze oplossing te implementeren, wordt een geautomatiseerde workflow mogelijk gemaakt waarbij orders, zodra ze besteld zijn, automatisch worden verwerkt en doorgestuurd naar een 3D-printer. Dit zorgt ervoor dat producten direct geprint kunnen worden zonder handmatige stappen.
 \\\\
-De doelgroep zijn mensen die een 3D-print Shopify webshop hebben en die deze stappen niet meer manueel willen uitvoeren. Deze oplossing biedt een efficiëntere werking alsook een snellere en gepersonaliseerde productie. Het onderzoek sluit niet volledig aan  bij grootschalige bedrijven, echter zijn er wel al bestaande tools. Deze zullen worden uitgelegd in de literatuurstudie.
+De doelgroep bestaat uit eigenaren van een 3D-print Shopify-webshop, die deze stappen niet langer handmatig willen uitvoeren. Deze oplossing biedt een efficiëntere werking, evenals een snellere en gepersonaliseerde productie. Hoewel dit onderzoek zich niet volledig richt op grootschalige bedrijven, bestaan er wel al vergelijkbare tools voor grotere organisaties. Deze zullen worden besproken in de literatuurstudie.
 \\\\
-Deze doelgroep heeft vaak nog veel manueel werk om orders van een website door te sturen naar hun printers, wat tijd, geld en efficiëntie kost. De onderzoeksvraag is daarom ook: “Hoe kan een geautomatiseerde pipeline worden ontwikkeld die orders vanuit een website automatisch omzet naar een opdracht voor een 3D-printer?”
+Om de implementatie van deze pipeline te realiseren, zijn er echter verschillende uitdagingen en onderzoeken die moeten worden aangepakt. Een belangrijke vraag is bijvoorbeeld: Wat zijn de specifieke uitdagingen bij het integreren van Shopify- en Bambu Lab API’s? Daarnaast is het noodzakelijk om te onderzoeken welke beperkingen en mogelijkheden deze API’s bieden om een geautomatiseerde workflow te ondersteunen. Verder is het essentieel om na te gaan hoe verschillende pipeline-architecturen presteren in termen van snelheid, foutgevoeligheid en schaalbaarheid.
 \\\\
-Het doel van dit onderzoek is het ontwikkelen van een pipeline die orders van een Shopify-webshop automatisch doorstuurt naar een 3D-printer door middel van de APIs van Shopify en Bambu Studio. Als resultaat is er een werkend prototype, waarbij nieuwe orders automatisch worden verwerkt naar de 3D-printer. Er wordt ook een Shopify-webshop opgezet als proof-of-concept en een Ba\-mbu Lab  X1C Printer met AMS zal gebruikt worden voor het prototype. Pipeline, APIs en de printer worden besproken in de literatuurstudie.
-
+Ook op het gebied van kosten en efficiëntie spelen belangrijke overwegingen mee. Een centrale vraag hierbij is: Wat zijn de implicaties van een dergelijke oplossing voor kleine bedrijven, en wat zijn acceptabele kosten (in tijd en geld) voor implementatie en onderhoud? Daarnaast moet er gekeken worden naar de stappen die nodig zijn om een werkend prototype te ontwikkelen dat effectief orders verwerkt naar de 3D-printer.
+\\\\
+De onderzoeksvraag luidt daarom:
+“Hoe kan een geautomatiseerde pipeline worden ontwikkeld die orders vanuit een website automatisch omzet naar een opdracht voor een 3D-printer?”
+\\\\
+Als resultaat van dit onderzoek wordt een werkend prototype opgeleverd, waarbij nieuwe orders automatisch worden verwerkt naar de 3D-printer. Voor deze proof-of-concept wordt een Shopify-webshop opgezet, en een Bambu Lab X1C Printer met AMS zal gebruikt worden voor de uitvoering. De literatuurstudie zal de pipeline, APIs en printer verder bespreken, evenals de uitdagingen en oplossingen die aan bod komen.
 
 %Waarover zal je bachelorproef gaan? Introduceer het thema en zorg dat volgende zaken zeker duidelijk aanwezig zijn:
 
@@ -61,7 +65,7 @@ Er zijn al een aantal verschillende vergelijkbare studies die zich richten op de
 
 \subsection{Pipeline}%
 
-Een pipeline is een manier om een ​​reeks bewerkingen of functies te organiseren die gegevens verwerken. De uitvoer van de ene bewerking wordt de invoer van de volgende, enzovoort, totdat het uiteindelijke resultaat is verkregen~\autocite{pythonPipelinesThakur}. In dit onderzoek word er gewerkt met een Pipline van Jenkins. Het is in principe een automatiseringsengine die een aantal automatiseringspatronen ondersteunt. Pipeline voegt een krachtige set automatiseringstools toe aan Jenkins, die use cases ondersteunen die variëren van eenvoudige continue integratie tot uitgebreide CD-pipelines~\autocite{jenkinsPipeline}. Hier zal er nog verder onderzoek naar gedaan worden. Hoe de pipeline altijd zal draaien is nog een open vraag.
+Een pipeline is een manier om een reeks bewerkingen of functies te organiseren die gegevens verwerken. De uitvoer van de ene bewerking wordt de invoer van de volgende, enzovoort, totdat het uiteindelijke resultaat is verkregen~\autocite{pythonPipelinesThakur}. Pipelines zijn essentieel voor het stroomlijnen van processen, vooral wanneer verschillende systemen of technologieën moeten samenwerken. Volgens ~\autocite{theseusVirtanen} bieden pipelines een efficiënte manier om taken te automatiseren en consistente resultaten te garanderen. In dit onderzoek zullen ook tools, zoals GitLab CI/CD, Bitbucket Pipelines, Jenkins, GitHub Actions en Google Cloud Build, worden geanalyseerd op basis van hun flexibiliteit, integratiemogelijkheden en gebruiksgemak. Deze analyse helpt bij het bepalen welke pipeline het meest geschikt is voor de specifieke vereisten en uitdagingen van de automatiseringsoplossing. Er zal verder onderzoek worden gedaan naar hoe deze pipeline zal functioneren, aangezien het nog een open vraag is hoe deze altijd kan blijven draaien.
 
 \subsection{API}%
 
@@ -111,34 +115,33 @@ Dit is een merk dat zich specialiseert in 3D-printers. Voor het onderzoek word e
 \section{Methodologie}%
 \label{sec:methodologie}
 
-Voor de methodologie rond automatisering van het orderproces van website naar 3D-geprinte producten zal het proces iteratief verlopen. Er zijn verschillende fasen, elke fase heeft zijn specifieke doelstelling, deliverables en deadlines. Tussen de fase word er samengezeten met de Co-promotor die feedback geeft en kan bijsturen waar nodig. Ook is het de bedoeling dat deze pipeline zal draaien op Mac en Windows.
+Het doel van dit onderzoek is het identificeren van de meest geschikte pipeline voor de automatisering van het orderproces van een website naar 3D-geprinte producten. Dit proces zal iteratief verlopen, met fasen die zich richten op onderzoek, evaluatie, en prototyping. Elke fase heeft specifieke doelstellingen, deliverables en deadlines. Regelmatige feedback van de Co-promotor zal worden gezocht om de voortgang te evalueren en bij te sturen waar nodig. Ook is het de bedoeling dat deze pipeline zal draaien op Mac en Windows.
 \vspace{2em}
 
 \textbf{Fase 1: Literatuurstudie}\\
 \textbf{(Deadline: 07 maart 2025)}\\\\
-In deze fase zal er verder onderzoek gedaan worden naar gelijkaardige toepassingen die al reeds bestaan. De deliverable voor deze fase is ervoor zorgen dat er een lijst wordt gemaakt met tools die gebruikt zullen worden voor de automatisering.
+In deze fase wordt er literatuuronderzoek gedaan naar bestaande oplossingen en pipelines die gebruikt kunnen worden voor de automatisering van het orderproces. Dit omvat een analyse van tools zoals Python, integraties met de Shopify API, en printbeheer API's zoals Bambu Studio. De deliverable voor deze fase is een lijst met mogelijke pipelines en tools die geschikt zouden kunnen zijn voor dit project, inclusief voor- en nadelen van elke optie.
 \vspace{2em}
 
 \textbf{Fase 2: Proof-of-Concept (PoC)}\\
 \textbf{(Deadline: 28 maart 2025)}\\\\
-Hier wordt er al een eerste PoC opgezet om de haalbaarheid van de oplossing aan te tonen. Er wordt een eerste versie gebouwd in Python, waarbij de basisfunctionaliteiten worden geïmplementeerd: een order ontvangen vanuit de Shopify API en deze doorsturen naar de Bambu Studio API. Hierdoor is het aangetoond dat dit concept werkt en is er al een technische basis om verder op te bouwen.
+Op basis van de literatuurstudie worden meerdere pipelines geselecteerd en getest door een PoC op te zetten voor elke gekozen oplossing. Dit zal helpen om de haalbaarheid van de verschillende pipelines te testen. De PoC zal een order ontvangen via de Shopify API en doorsturen naar de Bambu Studio API. De technische haalbaarheid van elke pipeline wordt geëvalueerd om te bepalen welke het beste presteert.
 \vspace{1em}
 
-\textbf{Fase 3: Experimenten en Testen}\\
+\textbf{Fase 3: Testen van de Pipelines en Prestatieanalyse}\\
 \textbf{(Deadline: 2 mei 2025)}\\\\
-Na de PoC is het de bedoeling om de pipeline uitgebreid te gaan testen. Hierbij wordt er getest op stress- of laadtest als er meerdere orders tegelijk binnenkomen. Ook testen we de foutafhandeling zodat er zeker geen onverwachte situaties kunnen opduiken. \\\\\textbf{Enkele test voorbeelden:}
+In deze fase worden de geselecteerde pipelines verder getest. Dit houdt in dat de pipelines onder verschillende belasting- en stressomstandigheden worden getest, zoals het verwerken van meerdere orders tegelijk. Daarnaast wordt er gekeken naar foutafhandelingsmechanismen en de stabiliteit van de integratie met de APIs. Enkele testscenario's omvatten: 
 \begin{itemize}
- \item Als een file mislukt met het versturen wat gebeurd er dan?
- \item Wat als de printer zonder stroom valt?
- \item Wat als er een printfout ontstaat?
- \item Wat doen we als de printer klaar is?
+     \item Wat gebeurt er als een bestand mislukt bij het verzenden?
+      \item Wat gebeurt er als de printer zonder stroom valt?
+       \item Wat gebeurt er bij een printfout?
+        \item Hoe wordt het beëindigen van het printproces afgehandeld? 
 \end{itemize}
-Er zijn heel veel situaties die kunnen voorkomen daarom wordt er onderzocht wat er allemaal kan gebeuren.
 \vspace{1em}
 
-\textbf{Fase 4: Iteratieve Ontwikkeling en Optimalisatie}\\
+\textbf{Fase 4: Keuze van de Beste Pipeline en Optimalisatie}\\
 \textbf{(Deadline: 16 mei 2025)}\\\\
-Op basis van de resultaten van vorige fasen kan de pipeline worden geoptimaliseerd in de code. Hier worden ook weer steeds testen uitgevoerd of het daadwerkelijk in orde is. Deze fase eindigt met een eindproduct dat al een opbouw  is voor de automatisatie op de markt te kunnen brengen.  
+Na de uitvoerige tests wordt de beste pipeline geselecteerd op basis van prestaties, fouttolerantie en integratiegemak. In deze fase worden eventuele optimalisaties doorgevoerd en wordt de gekozen oplossing verder verfijnd voor de uiteindelijke implementatie.
 
 \vspace{1em}
 \textbf{Dit is de verwachte lijst van Tools:}\\
@@ -148,7 +151,7 @@ Op basis van de resultaten van vorige fasen kan de pipeline worden geoptimalisee
 \item GitHub: voor versiebeheer van de code en documentatie.
 \item Postman: voor het testen van API-aanroepen tijdens de ontwikkeling.
 \item 3D-printer Bambu Lab X1C: voor het fysiek testen van het printproces.
-\item Jenkins Pipeline: voor het automatiseren van de opstart en integratie van de pipeline.
+\item Verschillende pipelinetools: voor het opzetten en automatiseren van de integratie tussen de verschillende onderdelen van het systeem.
 \end{itemize}
 
 \vspace{1em}
