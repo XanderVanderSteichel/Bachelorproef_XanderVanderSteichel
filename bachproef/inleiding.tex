@@ -5,32 +5,46 @@
 \chapter{\IfLanguageName{dutch}{Inleiding}{Introduction}}%
 \label{ch:inleiding}
 
-De inleiding moet de lezer net genoeg informatie verschaffen om het onderwerp te begrijpen en in te zien waarom de onderzoeksvraag de moeite waard is om te onderzoeken. In de inleiding ga je literatuurverwijzingen beperken, zodat de tekst vlot leesbaar blijft. Je kan de inleiding verder onderverdelen in secties als dit de tekst verduidelijkt. Zaken die aan bod kunnen komen in de inleiding~\autocite{Pollefliet2011}:
+In de huidige digitale economie wordt automatisering steeds belangrijker om efficiënter te werkt te gaan en menselijke fouten te beperken. Binnen de e-commerce sector met 3D-printing is een gestroomlijnde workflow van belang om bestellingen snel en accuraat te verwerken. Deze bachelorproef richt zich op de automatisering van het orderproces voor 3D-geprinte producten. Het doel is om een pipeline te ontwikkelen in Python die een Shopify-API koppelt aan de API van Bambu Studio. Hiermee wordt een geautomatiseerde workflow mogelijk gemaakt waarbij bestellingen na ontvangst automatisch worden verwerkt en doorgestuurd naar de 3D-printer.
 
-\begin{itemize}
-  \item context, achtergrond
-  \item afbakenen van het onderwerp
-  \item verantwoording van het onderwerp, methodologie
-  \item probleemstelling
-  \item onderzoeksdoelstelling
-  \item onderzoeksvraag
-  \item \ldots
-\end{itemize}
+%De inleiding moet de lezer net genoeg informatie verschaffen om het onderwerp te begrijpen en in te zien waarom de onderzoeksvraag de moeite waard is om te onderzoeken. In de inleiding ga je literatuurverwijzingen beperken, zodat de tekst vlot leesbaar blijft. Je kan de inleiding verder onderverdelen in secties als dit de tekst verduidelijkt. Zaken die aan bod kunnen komen in de inleiding~\autocite{Pollefliet2011}:
+
+%\begin{itemize}
+ % \item context, achtergrond
+ % \item afbakenen van het onderwerp
+ % \item verantwoording van het onderwerp, methodologie
+ % \item probleemstelling
+ % \item onderzoeksdoelstelling
+ % \item onderzoeksvraag
+ % \item \ldots
+%\end{itemize}
 
 \section{\IfLanguageName{dutch}{Probleemstelling}{Problem Statement}}%
 \label{sec:probleemstelling}
 
-Uit je probleemstelling moet duidelijk zijn dat je onderzoek een meerwaarde heeft voor een concrete doelgroep. De doelgroep moet goed gedefinieerd en afgelijnd zijn. Doelgroepen als ``bedrijven,'' ``KMO's'', systeembeheerders, enz.~zijn nog te vaag. Als je een lijstje kan maken van de personen/organisaties die een meerwaarde zullen vinden in deze bachelorproef (dit is eigenlijk je steekproefkader), dan is dat een indicatie dat de doelgroep goed gedefinieerd is. Dit kan een enkel bedrijf zijn of zelfs één persoon (je co-promotor/opdrachtgever).
+Momenteel vereisen veel webshops die 3D-geprinte producten aanbieden een handmatige verwerking van bestellingen. Dit proces is tijdrovend en foutgevoelig. Door de koppeling van Shopify met Bambu Studio te automatiseren, kan het orderproces efficiënter verlopen, wat resulteert in snellere leveringstijden en minder fysieke opdrachten. Dit onderzoek richt zich op het ontwikkelen en implementeren van een oplossing die deze automatisering mogelijk maakt.
+
+%Uit je probleemstelling moet duidelijk zijn dat je onderzoek een meerwaarde heeft voor een concrete doelgroep. De doelgroep moet goed gedefinieerd en afgelijnd zijn. Doelgroepen als ``bedrijven,'' ``KMO's'', systeembeheerders, enz.~zijn nog te vaag. Als je een lijstje kan maken van de personen/organisaties die een meerwaarde zullen vinden in deze bachelorproef (dit is eigenlijk je steekproefkader), dan is dat een indicatie dat de doelgroep goed gedefinieerd is. Dit kan een enkel bedrijf zijn of zelfs één persoon (je co-promotor/opdrachtgever).
 
 \section{\IfLanguageName{dutch}{Onderzoeksvraag}{Research question}}%
 \label{sec:onderzoeksvraag}
 
-Wees zo concreet mogelijk bij het formuleren van je onderzoeksvraag. Een onderzoeksvraag is trouwens iets waar nog niemand op dit moment een antwoord heeft (voor zover je kan nagaan). Het opzoeken van bestaande informatie (bv. ``welke tools bestaan er voor deze toepassing?'') is dus geen onderzoeksvraag. Je kan de onderzoeksvraag verder specifiëren in deelvragen. Bv.~als je onderzoek gaat over performantiemetingen, dan 
+De centrale onderzoeksvraag van deze bachelorproef luidt: "Hoe kan een Python-gebaseerde pipeline worden ontwikkeld om het orderproces van een Shopify-webshop te automatiseren met behulp van de Bambu Studio API?" Deze vraag wordt verder opgesplitst in deelvragen zoals:
+
+\begin{itemize}
+    \item Welke functionaliteiten biedt de Shopify API voor orderverwerking?
+    \item Hoe kan de Bambu Studio API orders efficiënt verwerken?
+    \item Welke uitdagingen en beperkingen zijn er bij de implementatie van een geautomatiseerde pipeline?
+\end{itemize}
+
+%Wees zo concreet mogelijk bij het formuleren van je onderzoeksvraag. Een onderzoeksvraag is trouwens iets waar nog niemand op dit moment een antwoord heeft (voor zover je kan nagaan). Het opzoeken van bestaande informatie (bv. ``welke tools bestaan er voor deze toepassing?'') is dus geen onderzoeksvraag. Je kan de onderzoeksvraag verder specifiëren in deelvragen. Bv.~als je onderzoek gaat over performantiemetingen, dan 
 
 \section{\IfLanguageName{dutch}{Onderzoeksdoelstelling}{Research objective}}%
 \label{sec:onderzoeksdoelstelling}
 
-Wat is het beoogde resultaat van je bachelorproef? Wat zijn de criteria voor succes? Beschrijf die zo concreet mogelijk. Gaat het bv.\ om een proof-of-concept, een prototype, een verslag met aanbevelingen, een vergelijkende studie, enz.
+Het doel van deze bachelorproef is het ontwikkelen van een proof-of-concept dat de orderverwerking van een Shopify-webshop volledig automatiseert via een koppeling met de Bambu Studio API. Het succes van deze implementatie wordt beoordeeld aan de hand van criteria zoals betrouwbaarheid, verwerkingssnelheid en foutreductie.
+
+%Wat is het beoogde resultaat van je bachelorproef? Wat zijn de criteria voor succes? Beschrijf die zo concreet mogelijk. Gaat het bv.\ om een proof-of-concept, een prototype, een verslag met aanbevelingen, een vergelijkende studie, enz.
 
 \section{\IfLanguageName{dutch}{Opzet van deze bachelorproef}{Structure of this bachelor thesis}}%
 \label{sec:opzet-bachelorproef}
