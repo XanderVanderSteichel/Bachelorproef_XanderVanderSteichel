@@ -56,10 +56,94 @@ De Bambu Lab X1C-Carbon is een geavanceerde 3D-printer die speciaal is ontworpen
 Deze printer werkt samen met de Bambu Studio slicer, een software die 3D-modellen omzet in printbare instructies \autocite{bambulabX1Carbon}.
 
 
-
+\newpage
 
 \section{E-commerce}%
 \label{sec:E-commerce}
+
+E-commerce is de laatste jaren uitgegroeid tot een van de belangrijkste manieren voor bedrijven om producten en diensten aan te bieden aan klanten. De opkomst van het internet en de ontwikkeling van digitale betalingssystemen hebben het gemakkelijker gemaakt voor bedrijven van elke omvang om een online winkel te starten. E-commerce omvat verschillende modellen, van B2C (Business to Consumer) tot B2B (Business to Business), en biedt tal van voordelen zoals bereikbaarheid, lage operationele kosten en de mogelijkheid om 24/7 actief te zijn~\autocite{bang2024}.
+
+\subsection{Waarom Shopify?}
+
+\begin{wrapfigure}{r}{0.3\textwidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{Foto's/shopify-store}
+    \caption{Shopify Logo. Bron: \url{https://www.ecommerce-nation.com/wp-content/uploads/2019/05/shopify-store.png.webp}}
+    \label{fig:shopify-store}
+\end{wrapfigure}
+
+
+Shopify is een van de populairste platforms voor het bouwen van e-commerce websites. Het staat bekend om zijn gebruiksvriendelijkheid, uitgebreide functies en krachtige tools die zowel beginners als ervaren ondernemers in staat stellen om snel een online winkel te lanceren. Ook zijn er mensen rondom mij die deze tool gebruiken, zo kan er voor hen ook een 3D-printer business automatisatie geïmplementeerd worden.
+\\
+
+\subsubsection{Kenmerken van Shopify}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|p{10cm}|} % 10 cm breedte voor de tweede kolom
+        \hline
+        \textbf{Kenmerk}            & \textbf{Beschrijving}                                                                                                                                            \\ \hline
+        Gebruiksvriendelijk         & Gebruiksvriendelijke interface voor gebruikers zonder uitgebreide technische kennis.            \\ \hline
+        Uitgebreide functies        & Functies zoals productbeheer, betalingsverwerking, voorraadbeheer en marketingtools.                                                \\ \hline
+        Schaalbaarheid              & Geschikt voor zowel kleine als grote bedrijven, omdat het eenvoudig kan worden opgeschaald naarmate het bedrijf groeit.                                   \\ \hline
+        Beveiliging                 & Shopify zorgt voor de veiligheid van klantgegevens door te voldoen aan de hoogste normen voor gegevensbeveiliging en PCI-compliantie~\autocite{bang2024}.              \\ \hline
+    \end{tabular}
+    \caption{Kenmerken van Shopify}
+    \label{tab:shopify_features}
+\end{table}
+
+\newpage
+
+\subsection{De Rol van Shopify in Dit Onderzoek}
+
+In dit onderzoek wordt Shopify gebruikt om een webshop te bouwen waar specifieke producten te koop worden aangeboden. Shopify biedt de benodigde tools voor het eenvoudig beheren van producten, betalingen en klanten.
+
+\subsubsection{De Voordelen voor Dit Project}
+\begin{itemize}
+     \item \textbf{Eenvoudig externe integratie:} Het is mogelijk om te gaan verbinden met een API, dit maakt het zeer handig om een pipeline aan te binden.
+    \item \textbf{Eenvoudig productbeheer:} Eenvoudig om bestanden en andere digitale producten toe te voegen, beheren en verkopen via de webshop.
+    \item \textbf{Betalingsverwerking:} Ondersteunt verschillende betalingsmethoden, waardoor klanten eenvoudig kunnen betalen voor hun aankopen.
+    \item \textbf{Flexibiliteit en aanpasbaarheid:} De webshop kan worden aangepast aan de specifieke behoeften van het project, van het ontwerp tot de integratie van de gewenste functies~\autocite{bang2024}.
+\end{itemize}
+
+\section{API}%
+\label{sec:api}
+
+Het gebruik van API’s is ook essentieel, zo gebruiken we de \textbf{Bambu Labs-API}, die biedt een Python API voor interactie met Bambu Lab 3D Printers~\autocite{bambulabsAPI}. Er is ook de Shopify API nodig voor de bestellingen te volgen. Dat is de \textbf{Airbyte Shopify Loader} dit zorgt ervoor dat de inkomende bestellingen geladen kunnen worden~\autocite{ilamaIndexShopify}. 
+
+\subsection{Wat is een API?}
+
+Een API (Application Programming Interface) is een set van regels en protocollen die softwaretoepassingen in staat stelt met elkaar te communiceren. API’s fungeren als tussenpersonen tussen twee systemen, zodat ze gegevens en functionaliteit kunnen uitwisselen. API’s maken het mogelijk om interacties tussen systemen te vereenvoudigen zonder dat de gebruiker direct tussenbeide hoeft te komen.~\autocite{aws2024}.\\
+
+API’s kunnen verschillende taken uitvoeren, van het ophalen van gegevens uit een database tot het uitvoeren van complexe berekeningen. De integratie van API’s in een systeem maakt het mogelijk om verschillende softwarecomponenten te verbinden, wat zorgt voor een robuustere en flexibele toepassing~\autocite{rapidapi2024}.
+
+\newpage
+
+\subsection{De mogelijkheden met de Bambu Labs-API}
+
+\begin{itemize}
+    \item Verbind en bedien Bambu Lab 3D-printers programmatisch. 
+    \item Houd de printerstatus in realtime in de gaten. 
+    \item Voer opdrachten uit en beheer afdruktaken via Python-code. 
+    \item Eenvoudige installatie en integratie met Python\--omgevingen. 
+\end{itemize}
+
+Het kan bijvoorbeeld met het commando \texttt{bambulabs\_api.Printer.start\_print} de printer s\-tarten als  de juiste variabelen meegegeven worden~\autocite{bambulabsAPI}.Hier zit ook nog een open vraag aan voor het ophalen van het document. Dat moet nog verder onderzocht worden hoe dat in zijn werking gaat maar dat zal in de testfase gebeuren.  
+
+\subsection{De mogelijkheden met de Shopify-API:}
+
+\begin{itemize} 
+    \item Krijg toegang tot en beheer je Shopify-bestellingen via de API. 
+    \item Haal ordergegevens op, inclusief productinformatie, klantgegevens en verzendstatus. 
+    \item Gebruik de Airbyte Shopify Loader om automatisch bestellingen van Shopify naar je doelbestemmingen te synchroniseren. 
+\end{itemize}
+
+Deze integratie maakt het mogelijk om bestellingen die via Shopify binnenkomen te volgen en te verwerken in een geautomatiseerde workflow. De Shopify API biedt toegang tot de ordergeschiedenis, zodat je eenvoudig kunt bijhouden welke producten zijn besteld en de status van elke bestelling kunt volgen. Het is mogelijk om orderinformatie op te halen met het commando \texttt{shopify\_api.orders.list()} om een lijst van bestellingen te verkrijgen.
+
+\newpage
+
+\section{Pipelines}%
+\label{sec:piplines}
+
 
 % Tip: Begin elk hoofdstuk met een paragraaf inleiding die beschrijft hoe
 % dit hoofdstuk past binnen het geheel van de bachelorproef. Geef in het
