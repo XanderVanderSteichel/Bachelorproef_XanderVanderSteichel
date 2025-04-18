@@ -1,12 +1,12 @@
 \chapter{\IfLanguageName{dutch}{Stand van zaken}{State of the art}}%
 \label{ch:stand-van-zaken}
 
-De orderverwerking binnen 3D-printproductie, is een proces dat helpt aan de efficiëntie en consistentie van productie. Kleinschalige e-\-commerce bedrijven werken vaak handmatige voor het verwerken van orders, zoals het controleren of er een nieuwe bestelling is binnengekomen om dat vervolgens te verwerken, zodat de printer kan starten. Vaak worden er ook Excel-bestanden of papieren lijsten gebruikt om orders bij te houden, wat tijdrovend en foutgevoelig kan zijn. Door de voortdurende ontwikkeling van technologie is het automatiseren van deze processen interessant. Zo kan er een proces worden opgezet dat dit met behulp van een Pipeline met API-integraties regelt. Dit vermindert fouten en versnelt het bedrijfsproces. 
+De orderverwerking binnen 3D-printproductie, is een proces dat helpt aan de efficiëntie en consistentie van productie. Kleinschalige e-\-commerce bedrijven werken vaak handmatig voor het verwerken van orders, zoals het controleren of er een nieuwe bestellingen zijn binnengekomen. Om dat vervolgens te verwerken, zodat de printer kan starten. Vaak worden er ook Excel-bestanden of papieren lijsten gebruikt om orders bij te houden, wat tijdrovend en foutgevoelig kan zijn. Door de voortdurende ontwikkeling van technologie is het automatiseren van deze processen interessant. Zo kan er een proces worden opgezet dat dit met behulp van een Pipeline met API-integraties regelt. Dit vermindert fouten en versnelt het bedrijfsproces. 
 
 \section{Vergelijkbare studies}%
 \label{sec:Vergelijkbare studie}
 
-Er zijn al een aantal verschillende vergelijkbare studies die zich richten op de automatisering van productie binnen 3D-printen. In een onderzoek van Maarten van Welsem bespreekt hij wat de impact is van 3D-printtechnologieën op de supply chain. Het beschrijft hoe automatisering een grotere flexibiliteit kan bieden, vooral voor reserveonderdelen en ondemand productie~\autocite{emerce3DprintSupplyChain}. Verder wordt er in een artikel van 3D Print Magazine beschreven hoe de automatisering binnen Europese 3D-printbedrijven hen helpt om mee te kunnen met andere bedrijven, door efficiënt aan de slag te gaan met complexe productieschema's. Ze hebben een grootschalig bedrijf en werken maar met 12 personen om al die printers te besturen door de automatisatie~\autocite{3dprintmagAutomation}. 
+Er zijn al een aantal verschillende vergelijkbare studies die zich richten op de automatisering van productie binnen 3D-printen. In een onderzoek van Maarten van Welsem bespreekt hij wat de impact is van 3D-printtechnologieën op de supply chain. Het beschrijft hoe automatisering een grotere flexibiliteit kan bieden, vooral voor reserveonderdelen en ondemand productie~\autocite{emerce3DprintSupplyChain}. Verder wordt er in een artikel van 3D Print Magazine beschreven hoe de automatisering binnen Europese 3D-printbedrijven hen helpt om mee te kunnen met andere bedrijven, door efficiënt aan de slag te gaan met complexe productieschema's. Ziggzagg hebben een grootschalig bedrijf en werken maar met 12 personen om al die printers te besturen door de automatisatie~\autocite{3dprintmagAutomation}. 
 
 \newpage
 
@@ -14,7 +14,7 @@ Er zijn al een aantal verschillende vergelijkbare studies die zich richten op de
 \label{sec:3D-printen & industrie}
 
 \subsection{Inleiding}
-3D-printen, ook wel bekend als Additive Manufacturing (AM), dat is een technologie die in de afgelopen decennia een enorme ontwikkeling heeft doorgemaakt \autocite{3dPrintingIndustry}. Deze techniek maakt het mogelijk om driedimensionale objecten laag voor laag op te bouwen met behulp van verschillende materialen zoals plastiek, metaal en hars. In dit onderzoek bespreken we de Bambu Lab X1C-Carbon als specifieke use case.
+3D-printen, ook wel bekend als Additive Manufacturing (AM), is een technologie die in de afgelopen decennia een enorme ontwikkeling heeft doorgemaakt \autocite{3dPrintingIndustry}. Deze techniek maakt het mogelijk om driedimensionale objecten laag voor laag op te bouwen met behulp van verschillende materialen zoals plastiek, metaal en hars. In dit onderzoek bespreken we de Bambu Lab X1C-Carbon als specifieke use case.
 
 \subsection{Wat is 3D-Printen?}
 3D-printen is een proces waarbij digitale 3D-modellen worden omgezet in fysieke objecten door opeenvolgende lagen materiaal neer te leggen. Dit proces verschilt van traditionele technieken zoals frezen en lazeren, omdat het materiaal alleen wordt toegevoegd waar nodig \autocite{3dPrintingIndustry}. Er zijn verschillende 3D-printtechnieken zoals:
@@ -22,7 +22,7 @@ Er zijn al een aantal verschillende vergelijkbare studies die zich richten op de
 \begin{wrapfigure}{r}{0.3\textwidth} % Verklein de breedte van de afbeelding
     \centering
     \includegraphics[width=0.8\linewidth]{Foto's/FDM}
-    \caption{FDM printtechniek. Bron: \url{https://nederland.3dprinting.com/wat-is-3d-printing/}}
+    \caption{FDM printtechniek. Bron:~\autocite{3dprintingImage}}
     \label{fig:fdm}
 \end{wrapfigure}
 \begin{itemize}
@@ -44,7 +44,7 @@ De 3D-printindustrie groeit snel en kan voor veel toepassingen gebruikt worden. 
 \begin{wrapfigure}{r}{0.3\textwidth} % Verklein de breedte van de afbeelding
     \centering
     \includegraphics[width=0.8\linewidth]{Foto's/X1C}
-    \caption{Bambu Lab X1C-Carbon 3D-printer. Bron: \url{https://bambulab.com/en/x1}}
+    \caption{Bambu Lab X1C-Carbon 3D-printer. Bron::~\autocite{bambulabImage}}
     \label{fig:x1c}
 \end{wrapfigure}
 De Bambu Lab X1C-Carbon is een geavanceerde 3D-printer die speciaal is ontworpen voor snelheid en precisie. Enkele kenmerken zijn:
@@ -68,28 +68,16 @@ E-commerce is de laatste jaren uitgegroeid tot een van de belangrijkste manieren
 \begin{wrapfigure}{r}{0.3\textwidth}
     \centering
     \includegraphics[width=0.8\linewidth]{Foto's/shopify-store}
-    \caption{Shopify Logo. Bron: \url{https://www.ecommerce-nation.com/wp-content/uploads/2019/05/shopify-store.png.webp}}
+    \caption{Shopify Logo. Bron:~\autocite{shopifyImage}}
     \label{fig:shopify-store}
 \end{wrapfigure}
 
 
-Shopify is een van de populairste platforms voor het bouwen van e-commerce websites. Het staat bekend om zijn gebruiksvriendelijkheid, uitgebreide functies en krachtige tools die zowel beginners als ervaren ondernemers in staat stellen om snel een online winkel te lanceren. Ook zijn er mensen rondom mij die deze tool gebruiken, zo kan er voor hen ook een 3D-printer business automatisatie geïmplementeerd worden.
-\\
-
-\subsubsection{Kenmerken van Shopify}
-\begin{table}[h]
-    \centering
-    \begin{tabular}{|l|p{10cm}|} % 10 cm breedte voor de tweede kolom
-        \hline
-        \textbf{Kenmerk}            & \textbf{Beschrijving}                                                                                                                                            \\ \hline
-        Gebruiksvriendelijk         & Gebruiksvriendelijke interface voor gebruikers zonder uitgebreide technische kennis.            \\ \hline
-        Uitgebreide functies        & Functies zoals productbeheer, betalingsverwerking, voorraadbeheer en marketingtools.                                                \\ \hline
-        Schaalbaarheid              & Geschikt voor zowel kleine als grote bedrijven, omdat het eenvoudig kan worden opgeschaald naarmate het bedrijf groeit.                                   \\ \hline
-        Beveiliging                 & Shopify zorgt voor de veiligheid van klantgegevens door te voldoen aan de hoogste normen voor gegevensbeveiliging en PCI-compliantie~\autocite{bang2024}.              \\ \hline
-    \end{tabular}
-    \caption{Kenmerken van Shopify}
-    \label{tab:shopify_features}
-\end{table}
+Shopify is een gebruiksvriendelijk platform dat toegankelijk is voor ondernemers zonder uitgebreide technische kennis. De interface is intuïtief en vereenvoudigt het proces van het opzetten en beheren van een online winkel. Daarnaast biedt Shopify uitgebreide functies, zoals productbeheer, betalingsverwerking, voorraadbeheer en marketingtools, waardoor ondernemers alle nodige middelen hebben om hun webshop efficiënt te runnen.
+\\\\
+Een ander belangrijk aspect van Shopify is de schaalbaarheid. Het platform is geschikt voor zowel kleine als grote bedrijven en kan eenvoudig meegroeien naarmate het bedrijf zich ontwikkelt. Hierdoor blijft Shopify een duurzame keuze voor ondernemingen die hun online aanwezigheid willen uitbreiden.
+\\\\
+Bovendien hecht Shopify veel belang aan beveiliging. Het platform voldoet aan de hoogste normen voor gegevensbeveiliging en is PCI-compliant, wat betekent dat klantgegevens en betalingsinformatie op een veilige manier worden verwerkt en beschermd~\autocite{bang2024}.
 
 \newpage
 
@@ -127,17 +115,19 @@ API’s kunnen verschillende taken uitvoeren, van het ophalen van gegevens uit e
     \item Eenvoudige installatie en integratie met Python\--omgevingen. 
 \end{itemize}
 
-Het kan bijvoorbeeld met het commando \texttt{bambulabs\_api.Printer.start\_print} de printer s\-tarten als  de juiste variabelen meegegeven worden~\autocite{bambulabsAPI}.Hier zit ook nog een open vraag aan voor het ophalen van het document. Dat moet nog verder onderzocht worden hoe dat in zijn werking gaat maar dat zal in de testfase gebeuren.  
+Het kan bijvoorbeeld met het commando \texttt{bambulabs\_api.Printer.start\_print} de printer s\-tarten als  de juiste variabelen meegegeven worden~\autocite{bambulabsAPI}  
 
 \subsection{De mogelijkheden met de Shopify-API:}
 
+De Shopify-plugin biedt een eenvoudige manier om bestellingen te beheren en te synchroniseren binnen een geautomatiseerde workflow. Dankzij deze integratie kunnen bestellingen die via Shopify binnenkomen eenvoudig worden gevolgd en verwerkt zonder dat directe API-aanroepen nodig zijn.
+
 \begin{itemize} 
-    \item Krijg toegang tot en beheer je Shopify-bestellingen via de API. 
-    \item Haal ordergegevens op, inclusief productinformatie, klantgegevens en verzendstatus. 
-    \item Gebruik de Airbyte Shopify Loader om automatisch bestellingen van Shopify naar je doelbestemmingen te synchroniseren. 
+    \item Bestellingen automatisch te synchroniseren en te beheren binnen het Shopify-dashboard. 
+    \item Ordergegevens op te halen, inclusief productinformatie, klantgegevens en verzendstatus. 
+    \item Eenvoudig koppelingen te maken met externe systemen of toepassingen die Shopify ondersteunen. 
 \end{itemize}
 
-Deze integratie maakt het mogelijk om bestellingen die via Shopify binnenkomen te volgen en te verwerken in een geautomatiseerde workflow~\autocite{ilamaIndexShopify}. De Shopify API biedt toegang tot de ordergeschiedenis, zodat je eenvoudig kunt bijhouden welke producten zijn besteld en de status van elke bestelling kunt volgen. Het is mogelijk om orderinformatie op te halen met het commando \texttt{shopify\_api.orders.list()} om een lijst van bestellingen te verkrijgen.
+Deze functionaliteit maakt het mogelijk om de ordergeschiedenis bij te houden en processen te automatiseren zonder diepgaande technische integratie. Voor Python-ontwikkelaars biedt Shopify een officiële Python API, waarmee ontwikkelaars eenvoudig toegang krijgen tot ordergegevens en andere functionaliteiten van Shopify~\cite{shopifyPythonAPI}.
 
 \newpage
 
@@ -161,7 +151,9 @@ In dit onderzoek worden \textbf{GitLab CI/CD}, \textbf{Bitbucket Pipelines}, \te
     \item \textbf{Google Cloud Build}: Cloudgebaseerde build- en testomgeving voor betrouwbare en schaalbare softwaredistributie.
 \end{itemize}
 
-Deze tools maken gebruik van \textit{geautomatiseerde tests} en \textit{zero-downtime deployment} om softwareontwikkeling te optimaliseren.
+Deze tools maken gebruik van \textit{geautomatiseerde tests} en \textit{zero-downtime deployment} om softwareontwikkeling te optimaliseren. De reden dat deze pipelines worden getest, is omdat ze vaak worden gebruikt in bestaande projecten en bedrijven, en omdat ze goed gedocumenteerd zijn. De keuze is gebaseerd op factoren zoals bekendheid in de industrie, prijs, beschikbare documentatie en eerder onderzoek naar de effectiviteit van verschillende pipelines.
+\\\\
+Zo bespreekt het onderzoek van~\cite{virtanen2021} hoe verschillende CI/CD-oplossingen scoren op deze criteria. Daarbij is gekeken naar welke pipelines populair zijn binnen bedrijven en open-source projecten, welke kosten eraan verbonden zijn, en hoe toegankelijk en volledig de documentatie is. Dit onderzoek hielp om een gefundeerde keuze te maken voor de meest geschikte pipelines binnen dit project.
 
 \subsubsection{Jenkins}
 Jenkins is een open source automatiseringsserver, Jenkins is bachikbaar als een servlet een traditionele servletcontainer, Docker-image en als standalone toepassing via de Java Runtime Environment~\autocite{jenkinsinstalling}. 
@@ -178,7 +170,7 @@ GitHub Actions is een platform voor continue integratie en continue levering (CI
 \\\\
 Workflows worden opgesteld met een YAML-bestand dat zich bevindt in de map “.github/workflows”. De opbouw van een workflow wordt in grote lijnen weergegeven in (Figuur 2.4). De YAML-structuur is zo ingericht dat deze een job bevat die begint bij een specifieke gebeurtenis, zoals het openen van een pull request op een bepaalde branch of een handmatige trigger van de workflow door de gebruiker. Elke job kan verschillende stappen omvatten, waarbij gebruik gemaakt kan worden van GitHub-acties. Acties zijn vooraf gedefinieerde functionaliteiten die je kunt combineren om de gewenste workflow te creëren. Gebruikers hebben de mogelijkheid om acties te hergebruiken die door de GitHub-community zijn ontwikkeld, of ze kunnen hun eigen acties vanaf het begin opzetten. Dit biedt veel flexibiliteit en mogelijkheden om workflows op maat te maken, afgestemd op de specifieke behoeften van een project of team.~\autocite{githubActionsIntro}.
 
-\begin{figure}{\textwidth}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{Foto's/overview-actions-simple.png}
     \caption{GitHub Actions workflow-structuur. Bron: ~\autocite{githubActionsIntro}.}
@@ -210,7 +202,7 @@ Bitbucket Pipelines is een cloudgebaseerde CI/CD-oplossing van Atlassian die is 
 Pipelines worden gedefinieerd via een YAML-bestand met de naam “bitbucket-pipelines.yml”. Bitbucket Cloud biedt een gebruiksvriendelijke interface die ook een wizard bevat om YAML-configuraties te genereren op basis van vooraf gedefinieerde sjablonen. De basisstructuur van een pipeline wordt weergegeven in Figuur 2.5. Pipelines moeten minimaal één stap bevatten, waarin ten minste één script wordt uitgevoerd. Elke stap wordt gedraaid in een aparte Docker-container. Hierdoor kunnen verschillende, meer toepassingsspecifieke, containers tussen elke stap worden gebruikt.Deze containers hebben een beperkte hoeveelheid RAM toegewezen, en er kunnen caches worden gedefinieerd om gegevensuitwisseling tussen containers te vergemakkelijken en duplicatie van stappen te voorkomen.~\autocite{atlassianConfigure}.
 \\\\
 
-\begin{figure}{\textwidth}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.3\linewidth]{Foto's/yml-structure.png}
     \caption{Structureel overzicht van Bitbucket Pipelines. Bron:~\autocite{atlassianConfigure}.}
@@ -234,7 +226,7 @@ Code 1 Basis YAML-structuur van GitLab CI/CD
     - echo "Deze opdracht zal iets gaan testen"
 \end{verbatim}
 \\\\
-\begin{figure}{\textwidth}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{Foto's/pipeline_graph_v17_9.png}
     \caption{GitLab CI/CD pipeline-status gevisualiseerd. Bron:~\autocite{gitlabPipelines}.}
