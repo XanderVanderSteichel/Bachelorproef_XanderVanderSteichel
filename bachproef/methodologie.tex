@@ -40,20 +40,27 @@ In deze fase wordt er literatuuronderzoek gedaan naar bestaande oplossingen en p
 Op basis van de literatuurstudie worden meerdere pipelines geselecteerd en getest door een PoC op te zetten voor elke gekozen oplossing. Dit zal helpen om de haalbaarheid van de verschillende pipelines te testen. De PoC zal een order ontvangen via de Shopify API en doorsturen naar de Bambu Studio API. De technische haalbaarheid van elke pipeline wordt geëvalueerd om te bepalen welke het beste presteert.
 \vspace{1em}
 
-\textbf{Fase 3: Testen van de Pipelines en Prestatieanalyse}\\
-\textbf{(Deadline: 18 April 2025)}\\\\
-In deze fase worden de geselecteerde pipelines verder getest. Dit houdt in dat de pipelines onder verschillende belasting- en stressomstandigheden worden getest, zoals het verwerken van meerdere orders tegelijk. Daarnaast wordt er gekeken naar foutafhandelingsmechanismen en de stabiliteit van de integratie met de APIs. Enkele testscenario's omvatten: 
-\begin{itemize}
-    \item Wat gebeurt er als een bestand mislukt bij het verzenden?
-    \item Wat gebeurt er als de printer zonder stroom valt?
-    \item Wat gebeurt er bij een printfout?
-    \item Hoe wordt het beëindigen van het printproces afgehandeld? 
-\end{itemize}
-\vspace{1em}
-
-\textbf{Fase 4: Keuze van de Beste Pipeline en Optimalisatie}\\
+\textbf{Fase 3: Testen en Optimalisatie van de Geselecteerde Pipeline}\\
 \textbf{(Deadline: 25 april 2025)}\\\\
-Na de uitvoerige tests wordt de beste pipeline geselecteerd op basis van prestaties, fouttolerantie en integratiegemak. In deze fase worden eventuele optimalisaties doorgevoerd en wordt de gekozen oplossing verder verfijnd voor de uiteindelijke implementatie.
+In deze fase wordt één pipeline verder uitgewerkt op basis van de voorlopige evaluaties. Hoewel nog geen definitieve keuze gemaakt is, zal de focus liggen op de oplossing die tijdens de proof-of-concept het meest beloftevol bleek. De andere pipelines worden voorlopig niet verder onderzocht.
+\vspace{2em}
+De gekozen pipeline wordt grondig getest onder verschillende omstandigheden, zoals foutscenario’s, verhoogde belasting en gelijktijdige bestellingen. Daarnaast worden eerste optimalisaties doorgevoerd om de betrouwbaarheid, foutafhandeling en prestaties te verbeteren. Om zo tot een beter eindresultaat te komen.
+\\\\
+\textbf{Testscenario’s omvatten onder andere:}
+\begin{itemize}
+    \item Wat gebeurt er als een G-code bestand niet correct verzonden wordt?
+    \item Hoe wordt een printfout opgevangen?
+    \item Hoe verloopt het gecontroleerd beëindigen van een printproces?
+    \item Wat gebeurt er bij meerdere orders tegelijk?
+\end{itemize}
+
+\vspace{1em}
+\textbf{Optimalisatie-aspecten:}
+\begin{itemize}
+    \item Verbeteren van foutdetectie en logging.
+    \item Verkennen van parallelle printmogelijkheden op langere termijn.
+    \item Opruimen van overbodige afhankelijkheden in het ontwikkelproces.
+\end{itemize}
 
 \vspace{1em}
 \textbf{Dit is de verwachte lijst van Tools:}\\
@@ -152,7 +159,7 @@ Deze lijst is opgesteld op basis van de initiële projectdoelen en inzichten uit
 \label{ch:poc}
 
 \section{Doel van deze fase}
-Het doel van deze fase was het opzetten van een eerste werkende pipline tussen de webshop en de 3D-printer, ter validatie van de gekozen tools en technieken.
+Het doel van deze fase was het opzetten van alle werkende piplines tussen de webshop en de 3D-printer, ter validatie van de gekozen tools en technieken.
 
 \section{Technische opstelling}
 \begin{itemize}
@@ -242,8 +249,8 @@ Onderstaande stappen beschrijven het volledige opzet- en uitvoeringsproces van d
 \begin{enumerate}
     \item Installeer \textbf{Docker} op je lokale machine.
     \item Installeer \textbf{Ngrok} om publieke toegang te voorzien naar je Jenkins-container.
-    \item Installeer of maak een \textbf{Shopify-winkel} aan.
-    \item Maak in Docker een aangepaste Jenkins-container aan:
+    \item Maak een \textbf{Shopify-winkel} aan.
+    \item Maak in Docker een aangepaste Jenkins-container aan, dit commando zorgt ervoor dat de container met het lokaal netwerk kan communiceren en dat er een volume aan gekoppeld  wordt:
     \begin{lstlisting}[language=bash, caption=Docker commando voor Jenkins met volume en poorten]
         docker run -d -p 8080:8080 -p 50000:50000 -v "D:\_3D_print_\Webshop:/var/jenkins_home" --name jenkins-met-backup jenkins-met-wijzigingen:custom
     \end{lstlisting}
@@ -261,7 +268,12 @@ Onderstaande stappen beschrijven het volledige opzet- en uitvoeringsproces van d
 \end{enumerate}
 
 \vspace{0.5em}
-\textit{Hier komt foto van: Docker Jenkins Container + Ngrok terminal output}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{foto's/ngrokWithJenkins.png}
+    \caption{Docker Jenkins Container + Ngrok terminal output.}
+    \label{fig:Ngrok-terminal}
+\end{figure}
 
 \subsection{Stap 2: Webhook Instellen in Shopify}
 \begin{enumerate}
@@ -275,7 +287,12 @@ Onderstaande stappen beschrijven het volledige opzet- en uitvoeringsproces van d
 \end{enumerate}
 
 \vspace{0.5em}
-\textit{Hier komt screenshot van: Shopify webhook-configuratie}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{foto's/ShopifyWebhookConfig.png}
+    \caption{Shopify webhook-configuratie.}
+    \label{fig:Shopify-Webhook-configuratie}
+\end{figure}
 
 \subsection{Stap 3: Aanmaken Jenkins Pipeline}
 \begin{enumerate}
@@ -374,7 +391,12 @@ Zodra alles correct is voorbereid, worden via CURL-commando’s drie instructies
 \end{itemize}
 
 \vspace{0.5em}
-\textit{Hier komt screenshot van: bestand in map \texttt{jenkins\_home} zichtbaar via Jenkins console}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{foto's/JenkinsHome.png}
+    \caption{bestand in map \texttt{jenkins\_home} zichtbaar via Jenkins console voor .3mf.}
+    \label{fig:Jenkins_home}
+\end{figure}
 
 \subsection{Stap 5: Printer Instellingen}
 \begin{itemize}
@@ -386,6 +408,12 @@ Zodra alles correct is voorbereid, worden via CURL-commando’s drie instructies
 
 \vspace{0.5em}
 \textit{Hier komt foto van: Raspberry Pi + printer setup}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\linewidth]{foto's/Ender3WithRaspberryPi.JPG}
+    \caption{Raspberry Pi + Ender 3 V2 setup.}
+    \label{fig:3Dprinter}
+\end{figure}
 
 \subsection{Afweging .py-scripts vs Curl}
 Tijdens de PoC is gebleken dat het gebruik van rechtstreekse \texttt{curl}-commando’s eenvoudiger en sneller resultaat gaf dan Python-scripts met externe libraries zoals \texttt{moonrakerpy}. Hierdoor werd gekozen om tijdens de PoC te werken met directe API-aanroepen.
@@ -406,6 +434,38 @@ Op basis van de uitgevoerde tests is \textbf{Jenkins} geselecteerd als meest ges
 \end{itemize}
 
 Er is beslist om de Jenkins-oplossing verder te optimaliseren in de volgende fase van het project.
+
+\chapter{\IfLanguageName{dutch}{Testen en Prestatieanalyse}{Testing and Performance Analysis}}%
+\label{ch:test-en-prestatie}
+
+\subsection{Doel}
+In deze fase werd de Jenkins-oplossing onderworpen aan functionele en foutgebaseerde testscenario’s om de betrouwbaarheid, foutafhandeling en prestaties te evalueren.
+
+\subsection{Testscenario’s}
+\begin{itemize}
+    \item Wat gebeurt er als een G-code bestand niet gevonden wordt?
+    \item Hoe wordt gereageerd op printfouten of onderbrekingen?
+    \item Wat gebeurt er bij stroomuitval van de printer?
+    \item Hoe gaat het systeem om met meerdere bestellingen tegelijk?
+\end{itemize}
+
+\subsection{Resultaten}
+\begin{itemize}
+    \item Curl-aanroepen bleken betrouwbaarder dan externe Python-libraries zoals \texttt{moonrakerpy}, en zorgden voor snelle debugging.
+    \item Jenkins-pipeline werkte stabiel bij normale belasting en kon foutmeldingen correct opvangen (bijvoorbeeld bij ontbrekende bestanden).
+    \item Parallelle bestellingen werden voorlopig nog niet ondersteund, maar dit wordt meegenomen naar optimalisatiefase.
+    \item Printproces kon correct gestart en gestopt worden via API-aanroepen.
+\end{itemize}
+
+\subsection{Afsluitende Opmerkingen}
+\begin{itemize}
+    \item Niet alle packages uit \texttt{requirements.txt} werden uiteindelijk gebruikt.
+    \item Voor productie is het aanbevolen om Jenkins permanent lokaal te draaien op een Raspberry Pi in plaats van via Ngrok.
+    \item Curl-aanpak zal in Fase 4 verder worden geoptimaliseerd en mogelijk vervangen door Python-scripts indien dit voordelen biedt.
+\end{itemize}
+
+\subsection{Besluit Fase 3}
+Op basis van de testresultaten blijft Jenkins de meest geschikte CI/CD-tool voor het project. De pipeline zal verder verfijnd worden in Fase 4, met aandacht voor fouttolerantie, performantie en onderhoudsgemak.
 
 
 
