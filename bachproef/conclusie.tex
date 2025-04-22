@@ -14,5 +14,43 @@
 % Heeft het onderzoek geleid tot nieuwe vragen die uitnodigen tot verder 
 %onderzoek?
 
-\lipsum[76-80]
+Dit bachelorproject onderzocht hoe een e-commerce platform zoals Shopify automatisch fysieke producten kan laten printen via een 3D-printer, zonder handmatige tussenkomst. Concreet werd onderzocht hoe een CI/CD-pipeline, zoals Jenkins, GitHub Actions of GitLab CI, gebruikt kan worden als brug tussen een webshop en een 3D-printer die aangestuurd wordt via Moonraker.
+
+Om dit te realiseren werden drie proof-of-concepts (PoC's) uitgewerkt:
+
+\begin{itemize}
+    \item \textbf{PoC 1} toonde aan dat Jenkins succesvol 3D-printtaken kan starten op basis van een Shopify-webhook. De pipeline uploadt G-code bestanden, start de printerqueue en wacht actief tot de print voltooid is.
+    
+    \item \textbf{PoC 2} bewees dat GitHub Actions ook geschikt is voor deze automatisatie, mits een externe tussenlaag (zoals een Express.js server) de webhooks opvangt en doorstuurt naar GitHub.
+    
+    \item \textbf{PoC 3} exploreerde de mogelijkheden met GitLab CI, met een focus op eenvoud en betere integratie-opties. GitLab toont gelijkaardige flexibiliteit.
+\end{itemize}
+
+De meest mature oplossing op technisch vlak was \textbf{PoC 1}, die het volledige proces van bestelling tot geprinte output afhandelt. Dankzij Jenkins' configuratie om builds niet parallel uit te voeren (\texttt{Do not allow concurrent builds}), en wordt elke bestelling in volgorde verwerkt. De pipeline wacht per product actief tot de print afgerond is, waardoor betrouwbaarheid en traceerbaarheid gegarandeerd zijn.
+
+\section*{Bijdrage aan het domein}
+
+Het project toont aan dat CI/CD-tools niet enkel nuttig zijn voor softwaredeployments, maar ook als coördinatieplatform kunnen dienen voor fysieke processen zoals 3D-printing. Deze benadering is relatief ongezien, en biedt een laagdrempelige automatisatie-oplossing aan voor kleine ondernemingen die geen toegang hebben tot complexe productielijnen of gespecialiseerde MES-software.
+
+\section*{Kritische reflectie}
+
+De pipelines functioneren stabiel en robuust, maar vereisen wel enige technische setup, vooral qua netwerkinstellingen (zoals ngrok of port forwarding). In een productiecontext zou een meer beveiligde oplossing vereist zijn.
+
+Ook blijft foutafhandeling aan de printerkant een uitdaging. Hoewel de pipeline printerfouten detecteert via de Moonraker API, kunnen problemen zoals mechanische falen of slecht gelevelde bedden enkel deels worden opgevangen.
+
+\section*{Vervolgonderzoek}
+
+Er zijn meerdere opportuniteiten voor vervolgonderzoek:
+
+\begin{itemize}
+    \item Integratie met meerdere printers tegelijk, en load balancing.
+    \item Integratie met order- en voorraadbeheer (bv. automatisch printen bij lage stock).
+    \item Meer verfijnde foutafhandeling en recovery-opties (bv. notificaties via mail of Discord).
+    \item Een visuele interface om printstatussen op te volgen.
+\end{itemize}
+
+\bigskip
+
+Tot slot toont dit project aan dat zelfs met bestaande tools zoals Jenkins en enkele scripts, een betrouwbare, flexibele en schaalbare printautomatisatie mogelijk is – een brug tussen digitale bestellingen en fysieke productie.
+
 

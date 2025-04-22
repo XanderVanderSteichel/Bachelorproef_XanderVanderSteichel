@@ -228,11 +228,12 @@ Omwille van tijd door de bambulab update en kosten dat nodig zijn als je deze ge
     \item Google Cloud Build
 \end{itemize}
 
-\section{Verwerking van een Order met Jenkins}
+\section{PoC 1: Jenkins integratie}
+\subsection{Verwerking van een Order met Jenkins}
 \begin{enumerate}
     \item Shopify stuurt via Webhook een order door.
-    \item De juiste G-code wordt geselecteerd.
     \item Jenkins pipeline wordt getriggerd door de webhook.
+    \item De juiste G-code wordt geselecteerd in de pipeline.
     \item Commando’s worden via curl doorgestuurd naar Moonraker:
     \begin{itemize}
         \item \texttt{G28} commando om te 'homen'
@@ -241,23 +242,19 @@ Omwille van tijd door de bambulab update en kosten dat nodig zijn als je deze ge
     \end{itemize}
 \end{enumerate}
 
-\section{Stappenplan Uitgevoerde Oplossing}
+\subsection{Stappenplan Uitgevoerde Oplossing}
 
-Onderstaande stappen beschrijven het volledige opzet- en uitvoeringsproces van de PoC-oplossing waarbij een Shopify-webhook via Jenkins een 3D-printopdracht start op een Raspberry Pi met MainsailOS en Moonraker.
+Onderstaande stappen beschrijven de volledige opzet- en uitvoeringsproces van de pipeline waarbij een Shopify-webhook via Jenkins een 3D-printopdracht start op een Raspberry Pi met MainsailOS en Moonraker.
 
-\subsection{Stap 1: Installaties en Voorbereidingen}
+\subsubsection{Stap 1: Installaties en Voorbereidingen}
 \begin{enumerate}
-    \item Installeer \textbf{Docker} op je lokale machine.
-    \item Installeer \textbf{Ngrok} om publieke toegang te voorzien naar je Jenkins-container.
     \item Maak een \textbf{Shopify-winkel} aan.
+    \item Installeer \textbf{Docker} op je lokale machine.
     \item Maak in Docker een aangepaste Jenkins-container aan, dit commando zorgt ervoor dat de container met het lokaal netwerk kan communiceren en dat er een volume aan gekoppeld  wordt:
     \begin{lstlisting}[language=bash, caption=Docker commando voor Jenkins met volume en poorten]
         docker run -d -p 8080:8080 -p 50000:50000 -v "D:\_3D_print_\Webshop:/var/jenkins_home" --name jenkins-met-backup jenkins-met-wijzigingen:custom
     \end{lstlisting}
-    \item Open poort 8080 via Ngrok:
-    \begin{lstlisting}[language=bash]
-        ngrok http 8080
-    \end{lstlisting}
+    \item Installeer \textbf{Ngrok} om publieke toegang te voorzien naar je Jenkins-container.
     \item Start Jenkins en kopieer het initiële admin-wachtwoord uit de Docker terminal.
     \item Maak een admin account aan in de Jenkins UI.
     
@@ -265,6 +262,11 @@ Onderstaande stappen beschrijven het volledige opzet- en uitvoeringsproces van d
     \begin{itemize}
         \item \texttt{Generic Webhook Trigger Plugin}
     \end{itemize}
+    \item Open poort 8080 via Ngrok:
+    \begin{lstlisting}[language=bash]
+        ngrok http 8080
+    \end{lstlisting}
+
 \end{enumerate}
 
 \vspace{0.5em}
@@ -275,7 +277,7 @@ Onderstaande stappen beschrijven het volledige opzet- en uitvoeringsproces van d
     \label{fig:Ngrok-terminal}
 \end{figure}
 
-\subsection{Stap 2: Webhook Instellen in Shopify}
+\subsubsection{Stap 2: Webhook Instellen in Shopify}
 \begin{enumerate}
     \item Navigeer in Shopify naar \texttt{Instellingen > Meldingen > Webhooks}.
     \item Voeg een nieuwe webhook toe bij ``Bestelling aangemaakt''.
@@ -294,13 +296,13 @@ Onderstaande stappen beschrijven het volledige opzet- en uitvoeringsproces van d
     \label{fig:Shopify-Webhook-configuratie}
 \end{figure}
 
-\subsection{Stap 3: Aanmaken Jenkins Pipeline}
+\subsubsection{Stap 3: Aanmaken Jenkins Pipeline}
 \begin{enumerate}
     \item Maak een nieuw Pipeline-project aan in Jenkins.
     \item Koppel het project aan een GitHub-repository.
     \item Voeg een \texttt{Jenkinsfile} toe in de repo met volgende inhoud:
 
-\subsection*{Stap 1: Shopify trigger naar Jenkins}
+\paragraph*{Stap 1: Shopify trigger naar Jenkins}
 
 Een \texttt{Generic Webhook Trigger} plugin wordt gebruikt in Jenkins om inkomende bestellingen te detecteren. Hieronder zie je het deel van de configuratie dat de trigger mogelijk maakt:
 
@@ -316,7 +318,7 @@ Een \texttt{Generic Webhook Trigger} plugin wordt gebruikt in Jenkins om inkomen
     }
 \end{lstlisting}
 
-\subsection*{Stap 2: Controle van het bestandsvolume}
+\paragraph*{Stap 2: Controle van het bestandsvolume}
 
 Vooraleer een printopdracht wordt verstuurd, wordt nagegaan of het juiste G-code bestand bestaat in de Jenkins container (via een Docker volume gekoppeld aan de host).
 
@@ -328,7 +330,7 @@ Vooraleer een printopdracht wordt verstuurd, wordt nagegaan of het juiste G-code
     }
 \end{lstlisting}
 
-\subsection*{Stap 3: Informatie over de bestelling loggen}
+\paragraph*{Stap 3: Informatie over de bestelling loggen}
 
 Bij het ontvangen van de bestelling loggen we de producten zodat we later kunnen debuggen of analyseren wat er is binnengekomen.
 
@@ -340,7 +342,7 @@ Bij het ontvangen van de bestelling loggen we de producten zodat we later kunnen
     }
 \end{lstlisting}
 
-\subsection*{Stap 4: Voorbereiding van het G-code bestand}
+\paragraph*{Stap 4: Voorbereiding van het G-code bestand}
 
 We selecteren één product en controleren of het bijhorende .gcode bestand klaarstaat om geprint te worden:
 
@@ -358,7 +360,7 @@ We selecteren één product en controleren of het bijhorende .gcode bestand klaa
     }
 \end{lstlisting}
 
-\subsection*{Stap 5: Verzenden van de printopdracht}
+\paragraph*{Stap 5: Verzenden van de printopdracht}
 
 Zodra alles correct is voorbereid, worden via CURL-commando’s drie instructies naar de printer gestuurd:
 
@@ -380,11 +382,7 @@ Zodra alles correct is voorbereid, worden via CURL-commando’s drie instructies
     }
 \end{lstlisting}
 
-
-\vspace{0.5em}
-\textit{Hier komt screenshot van: Jenkins-pipeline configuratie met webhook trigger}
-
-\subsection{Stap 4: Bestandenstructuur en G-code}
+\subsubsection{Stap 4: Bestandenstructuur en G-code}
 \begin{itemize}
     \item De G-code bestanden worden lokaal bewaard in de Jenkins volume map: \texttt{/var/jenkins\_home/}.
     \item De naam van het bestand moet overeenkomen met het ontvangen product via Shopify.
@@ -398,7 +396,7 @@ Zodra alles correct is voorbereid, worden via CURL-commando’s drie instructies
     \label{fig:Jenkins_home}
 \end{figure}
 
-\subsection{Stap 5: Printer Instellingen}
+\subsubsection{Stap 5: Printer Instellingen}
 \begin{itemize}
     \item Raspberry Pi draait MainsailOS met Moonraker.
     \item Printer is lokaal bereikbaar via IP: \texttt{192.168.1.100:7125}.
@@ -407,7 +405,6 @@ Zodra alles correct is voorbereid, worden via CURL-commando’s drie instructies
 \end{itemize}
 
 \vspace{0.5em}
-\textit{Hier komt foto van: Raspberry Pi + printer setup}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.3\linewidth]{foto's/Ender3WithRaspberryPi.JPG}
@@ -415,12 +412,240 @@ Zodra alles correct is voorbereid, worden via CURL-commando’s drie instructies
     \label{fig:3Dprinter}
 \end{figure}
 
-\subsection{Afweging .py-scripts vs Curl}
+\section{PoC 2: GitHub Actions Pipeline integratie}
+
+In deze tweede PoC werd een GitHub Actions pipeline gebruikt. In plaats van Jenkins generic trigger wordt er gebruikgemaakt van een Express-server die de webhook ontvangt en vervolgens een GitHub Action triggert.
+
+\subsection{Verwerking van een Order met GitHub Actions}
+
+\begin{enumerate}
+    \item Een Express-server draait lokaal en ontvangt webhook-events van Shopify.
+    \item Bij ontvangst van een nieuwe bestelling wordt via de GitHub API een \texttt{repository\_dispatch} event verstuurd.
+    \item Een GitHub Actions pipeline luistert op dit event en verwerkt de bestelling.
+    \item De juiste G-code wordt geüpload naar een 3D-printer via een Ngrok-tunnel naar de Moonraker API.
+\end{enumerate}
+
+\subsection{Stappenplan Uitgevoerde Oplossing}
+
+\subsubsection{Stap 1: Installaties en Voorbereidingen}
+
+\begin{itemize}
+    \item Maak een \textbf{Shopify-winkel} aan.
+    \item G-code bestanden opgeslagen in een submap van deze repo (\texttt{gcodes/}).
+    \item Een werkende Moonraker setup op een Raspberry Pi met MainsailOS.
+    \item Een \texttt{GITHUB\_TOKEN} environment variabele (persoonlijke access token met repo rechten).
+\end{itemize}
+
+\subsubsection{Stap 2: Webhook Server (Express)}
+
+De Express-server ontvangt webhooks en stuurt een dispatch-event naar GitHub.
+
+\begin{lstlisting}[language=javascript, caption=Webhook-server (gedeeltelijk weergegeven)]
+    const express = require('express');
+    const axios = require('axios');
+    require('dotenv').config();
+    
+    const app = express();
+    app.use(express.json());
+    
+    app.post('/shopify-webhook', async (req, res) => {
+        const orderId = req.body.id;
+        const productNames = req.body.line_items.map((item) => item.name);
+        
+        try {
+            await axios.post(
+            'https://api.github.com/repos///dispatches',
+            {
+                event_type: 'shopify-order',
+                client_payload: {
+                    order_id: orderId,
+                    product_names: productNames[0],
+                },
+            },
+            {
+                headers: {
+                    Authorization: token ${process.env.GITHUB_TOKEN},
+                },
+            }
+            );
+            res.status(200).send('GitHub Action triggered');
+        } catch (error) {
+            res.status(500).send('Fout bij triggeren van GitHub');
+        }
+    });
+    
+    app.listen(3000);
+\end{lstlisting}
+
+De token moet beschikbaar zijn in een \texttt{.env} bestand:
+
+\begin{lstlisting}[language=bash, caption=.env bestand voorbeeld]
+    GITHUB_TOKEN=ghp_jouwpersoneletokenhier
+\end{lstlisting}
+
+\subsubsection{Stap 3: Shopify Webhook Configuratie}
+
+\begin{itemize}
+    \item Ga naar \texttt{Instellingen > Meldingen > Webhooks} in Shopify.
+    \item Voeg een webhook toe voor "Order created".
+    \item Gebruik de volgende URL:
+    \begin{lstlisting}[language=text]
+        https:///shopify-webhook
+    \end{lstlisting}
+    \item Kies als formaat \texttt{JSON}.
+\end{itemize}
+
+\subsubsection{Stap 4: GitHub Actions Pipeline}
+
+Bij ontvangst van een \texttt{repository\_dispatch} wordt deze pipeline uitgevoerd.
+
+\begin{lstlisting}[language=yaml, caption=Shopify Order Print Pipeline (gedeeltelijk)]
+    on:
+    repository_dispatch:
+    types: [shopify-order]
+    
+    jobs:
+    print-job:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+    uses: actions/checkout@v4
+    
+      - name: Extract Order Info
+    id: extract
+    run: |
+    echo "Product: ${{ github.event.client_payload.product_names }}"
+    ... extractie- en bestandslogica ...
+    
+    - name: Upload & Start Print
+    run: |
+    curl -X POST .../printer/gcode/script -d '{"script": "G28"}'
+    curl -X POST .../server/files/upload -F "file=@..."
+    curl -X POST .../printer/print/start -d '{"filename": "..."}'
+\end{lstlisting}
+
+\subsubsection{Stap 5: Mappenstructuur en Bestandseisen}
+
+\begin{itemize}
+\item De map \texttt{gcodes/} in de GitHub repo bevat de benodigde \texttt{.gcode} bestanden.
+\item De bestandsnamen moeten exact overeenkomen met de Shopify productnamen.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\linewidth]{foto's/Github/Schermafbeelding 2025-04-22 161449.png}
+    \caption{mappenstructuur in de GitHub repository}
+    \label{fig:Github_Repo}
+\end{figure}
+
+\subsubsection{Stap 6: Ngrok Setup}
+
+Zorg ervoor dat zowel je Express-server als je Moonraker API extern bereikbaar zijn. Start Ngrok bijvoorbeeld als volgt:
+
+\begin{lstlisting}[language=bash, caption=Ngrok tunnel starten voor Express]
+ngrok http 3000
+\end{lstlisting}
+
+\begin{lstlisting}[language=bash, caption=Ngrok tunnel starten voor Moonraker]
+ngrok http 7125
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{foto's/Github/GithubPrintSucces.png}
+    \caption{Voorbeeld van een succesvolle GitHub Actions run}
+    \label{fig:Github_Succes}
+\end{figure}
+
+\section{Stappenplan PoC 3: GitLab CI/CD Integratie}
+
+De derde en laatste PoC gebruikt GitLab CI/CD. Hierbij worden omgevingsvariabelen gebruikt en wordt een GitLab pipeline getriggerd via een API-call.
+
+\subsection{Stappenplan Uitgevoerde Oplossing}
+
+\subsubsection{Stap 1: Installaties en Voorbereidingen}
+\begin{itemize}
+    \item Maak een \textbf{Shopify-winkel} aan.
+    \item Een publieke GitLab repository met een \texttt{.gitlab-ci.yml} bestand.
+    \item Twee Ngrok-tunnels: één voor de webhook-server (indien gebruikt), één voor de printer.
+    \item Een Raspberry Pi met MainsailOS en Moonraker geïnstalleerd.
+    \item Een pipeline trigger token van GitLab.
+\end{itemize}
+
+\subsubsection{Stap 2: Webhook Setup of Directe Trigger}
+Er zijn twee mogelijkheden om de pipeline te starten:
+\begin{enumerate}
+    \item \textbf{Via een Node.js Webhook Server} (zoals bij PoC 2): deze ontvangt de bestelling van Shopify en doet een POST-request naar de GitLab API.
+    \item \textbf{Rechtstreeks in Shopify} bij het instellen van de webhook-URL:
+    \begin{lstlisting}[language=text, caption=Voorbeeld GitLab trigger-URL]
+        https://gitlab.com/api/v4/projects/<PROJECT_ID>/ref/master/trigger/pipeline?token=<JOUW_TOKEN>&variables[ORDER_ID]=123456&variables[PRODUCT_NAMES]=Ballini%20Black%20Casual
+    \end{lstlisting}
+\end{enumerate}
+
+\subsubsection{Stap 3: Pipelineconfiguratie in GitLab}
+Het volgende \texttt{.gitlab-ci.yml} bestand wordt gebruikt om de printopdracht uit te voeren:
+
+\begin{lstlisting}[language=yaml, caption=.gitlab-ci.yml structuur (vereenvoudigd)]
+    image: python:3.11-slim
+    
+    stages:
+    - prepare
+    - check
+    - print
+    
+    variables:
+    PRINTER_HOST: 192.168.1.100
+    GCODE_DIR: ./gcodes
+    
+    before_script:
+    - apt-get update && apt-get install -y curl
+    - python -m venv venv
+    - source venv/bin/activate
+    - pip install -r requirements.txt
+    
+    print-job:
+    stage: print
+    script:
+    - echo "Product: $PRODUCT_NAMES"
+    - export ORDER_NAME=$(echo "$PRODUCT_NAMES" | sed 's/ //g' | cut -d',' -f1)
+    - export GCODE_FILE="$GCODE_DIR/$ORDER_NAME.gcode"
+    - test -f "$GCODE_FILE" || exit 1
+    - curl -X POST <NGROK_URL>/printer/gcode/script -d '{"script": "G28"}'
+    - curl -X POST <NGROK_URL>/server/files/upload -F "file=@$GCODE_FILE"
+    - curl -X POST <NGROK_URL>/printer/print/start -d "{\"filename\": \"$ORDER_NAME.gcode\"}"
+\end{lstlisting}
+
+\subsubsection{Stap 4: Netwerk en Beveiliging}
+\begin{itemize}
+    \item Voor deze setup heb je idealiter twee aparte Ngrok-tunnels nodig:
+    \begin{itemize}
+        \item Eén om de printer aan te sturen via Moonraker.
+        \item Eén voor een mogelijke Node.js server als tussenlaag (optioneel).
+    \end{itemize}
+    \item Aangezien meerdere Ngrok-tunnels tegelijk draaien, is een betaald Ngrok-abonnement vereist.
+    \item Tokens en geheime variabelen zoals het GitLab trigger-token moeten worden beheerd via omgevingsvariabelen of GitLab CI/CD Secrets.
+\end{itemize}
+
+\subsubsection{Stap 5: Structuur en Bestanden}
+\begin{itemize}
+    \item De \texttt{.gcode} bestanden worden in de \texttt{gcodes/} map van de GitLab repository geplaatst.
+    \item De bestandsnaam moet overeenkomen met het product dat Shopify doorstuurt (zonder spaties of speciale tekens).
+    \item \texttt{requirements.txt} bevat eventuele Python dependencies voor extra verwerking (optioneel).
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\linewidth]{foto's/Gitlab/folder.png}
+    \caption{mappenstructuur in de GitLab repository}
+    \label{fig:GitLab_Repo}
+\end{figure}
+
+\section{Afweging .py-scripts vs Curl}
 Tijdens de PoC is gebleken dat het gebruik van rechtstreekse \texttt{curl}-commando’s eenvoudiger en sneller resultaat gaf dan Python-scripts met externe libraries zoals \texttt{moonrakerpy}. Hierdoor werd gekozen om tijdens de PoC te werken met directe API-aanroepen.
 
-\subsection{Afsluitende Opmerkingen}
+\section{Afsluitende Opmerkingen}
 \begin{itemize}
-    \item Niet alle packages in \texttt{requirements.txt} werden effectief gebruikt.
+    \item Niet alle packages in \texttt{requirements.txt} werden effectief gebruikt (zelf geen bij Jenkins).
     \item Voor productie is het aangeraden om Jenkins lokaal op een Raspberry Pi te hosten i.p.v. via Ngrok.
     \item Curl biedt betrouwbaardere controle tijdens testen dan afhankelijkheden van externe libraries.
 \end{itemize}
@@ -439,33 +664,182 @@ Er is beslist om de Jenkins-oplossing verder te optimaliseren in de volgende fas
 \label{ch:test-en-prestatie}
 
 \subsection{Doel}
-In deze fase werd de Jenkins-oplossing onderworpen aan functionele en foutgebaseerde testscenario’s om de betrouwbaarheid, foutafhandeling en prestaties te evalueren.
+In deze fase werd de Jenkins-oplossing onderworpen aan een reeks functionele en foutgebaseerde testscenario’s. Het doel was om de betrouwbaarheid, foutafhandeling en prestaties van de pipeline te evalueren binnen realistische omstandigheden.
 
 \subsection{Testscenario’s}
 \begin{itemize}
     \item Wat gebeurt er als een G-code bestand niet gevonden wordt?
-    \item Hoe wordt gereageerd op printfouten of onderbrekingen?
-    \item Wat gebeurt er bij stroomuitval van de printer?
-    \item Hoe gaat het systeem om met meerdere bestellingen tegelijk?
+    \item Hoe wordt gereageerd op printfouten of onderbrekingen tijdens het proces?
+    \item Wat gebeurt er bij stroomuitval van de printer of het systeem?
+    \item Hoe gaat het systeem om met meerdere bestellingen kort na elkaar?
 \end{itemize}
 
 \subsection{Resultaten}
 \begin{itemize}
-    \item Curl-aanroepen bleken betrouwbaarder dan externe Python-libraries zoals \texttt{moonrakerpy}, en zorgden voor snelle debugging.
-    \item Jenkins-pipeline werkte stabiel bij normale belasting en kon foutmeldingen correct opvangen (bijvoorbeeld bij ontbrekende bestanden).
-    \item Parallelle bestellingen werden voorlopig nog niet ondersteund, maar dit wordt meegenomen naar optimalisatiefase.
-    \item Printproces kon correct gestart en gestopt worden via API-aanroepen.
+    \item De pipeline bevat een controle op de aanwezigheid van het benodigde G-code bestand in het Jenkins-bestandssysteem:
+    \begin{lstlisting}[language=groovy]
+        if (!fileExists(lokaalPad)) {
+            error "❌ G-code bestand niet gevonden: ${lokaalPad}"
+        }
+    \end{lstlisting}
+    Indien het bestand niet gevonden wordt, faalt de job correct met een duidelijke foutmelding.
+    
+    \item Tijdens het printen wordt de status van de printer opgevolgd:
+    \begin{lstlisting}[language=groovy]
+        def statusJson = sh(script: "curl -s ${env.PRINTER_URL}/api/job", returnStdout: true)
+        def status = new groovy.json.JsonSlurperClassic().parseText(statusJson)
+        def state = status?.state
+        if (state == "Error") {
+            error "❌ Fout opgetreden tijdens printen!"
+        }
+    \end{lstlisting}
+    Bij fouten of onverwachte states zoals \texttt{Error} wordt de pipeline correct afgebroken.
+    
+    \item Bij stroomuitval of verlies van netwerkverbinding reageert de pipeline met een time-out of een HTTP-error. De pipeline blijft hierdoor hangen of faalt met een foutcode. Dit werd als logisch gedrag beschouwd, al kan de foutafhandeling verder verbeterd worden met notificaties (zie verder).
+    
+    \item Bestellingen met meerdere producten worden correct afgehandeld via sequentiële verwerking in één build:
+    \paragraph{Verwerking per product met statuscontrole}
+    
+    Een sterke eigenschap van de pipeline is dat elke productlijn afzonderlijk verwerkt wordt binnen één webhookbuild. De pipeline controleert per product:
+    
+    \begin{itemize}
+        \item Of het G-code bestand lokaal aanwezig is.
+        \item Of het al op de printer staat (via de Moonraker file list).
+        \item Of upload nodig is.
+        \item Of de printer gehomed is (G28).
+        \item Of het printjob correct toegevoegd en gestart is.
+        \item Of de job correct afgerond wordt (state check via API).
+    \end{itemize}
+    
+    De volledige verwerking gebeurt in één `stage`, waarin een lijst producten (uit de Shopify-bestelling) doorlopen wordt. Dit zorgt voor duidelijke foutmeldingen en garandeert dat alle producten geprint zijn voordat de job als succesvol beschouwd wordt.
+    
+    \begin{lstlisting}[language=groovy, caption=Sequentiële verwerking per product]
+        stage('Print per product') {
+            steps {
+                script {
+                    def producten = env.product_names.replaceAll("[\\[\\]\" ]", "").split(",")
+                    def printerFilesJson = sh(script: "curl -s ${env.PRINTER_URL}/server/files/list?root=gcodes", returnStdout: true)
+                    def printerFiles = new groovy.json.JsonSlurperClassic().parseText(printerFilesJson)
+                    
+                    for (product in producten) {
+                        def productNaam = product.trim()
+                        def bestandNaam = "${productNaam}.gcode"
+                        def lokaalPad = "/var/jenkins_home/${bestandNaam}"
+                        
+                        echo "\n🔧 Verwerken: ${productNaam}"
+                        
+                        if (!fileExists(lokaalPad)) {
+                            error "❌ G-code bestand niet gevonden: ${lokaalPad}"
+                        }
+                        
+                        def bestandBestaat = printerFiles.result.any { it.path == bestandNaam }
+                        if (!bestandBestaat) {
+                            echo "⬆️ Bestand ${bestandNaam} wordt geüpload..."
+                            ...
+                        }
+                        
+                        echo "🏠 Homing uitvoeren (G28)..."
+                        ...
+                        
+                        echo "📨 Job toevoegen aan wachtrij: ${bestandNaam}"
+                        ...
+                        
+                        echo "🚦 Starten van job queue..."
+                        ...
+                        
+                        echo "⏳ Wachten op printvoltooiing van ${bestandNaam}..."
+                        timeout(time: env.MAX_WAIT_MINUTES.toInteger(), unit: 'MINUTES') {
+                            waitUntil {
+                                def statusJson = sh(script: "curl -s ${env.PRINTER_URL}/api/job", returnStdout: true).trim()
+                                def status = new groovy.json.JsonSlurperClassic().parseText(statusJson)
+                                def state = status?.state
+                                
+                                echo "📡 Printerstatus: ${state}"
+                                
+                                if (state == "Error") {
+                                    error "❌ Fout opgetreden tijdens printen!"
+                                } else if (state == "Operational") {
+                                    echo "✅ Print van ${bestandNaam} voltooid."
+                                    return true
+                                } else {
+                                    sleep(time: 20, unit: 'SECONDS')
+                                    return false
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    \end{lstlisting}
+    
+    Deze aanpak maakt het eenvoudig om foutafhandeling, logging en statuscontrole netjes te isoleren per product. Dankzij Jenkins' configuratie die gelijktijdige builds voorkomt (zoals de setting \texttt{Do not allow concurrent builds}), worden builds geserialiseerd. Dit zorgt ervoor dat elke bestelling afzonderlijk en volledig wordt afgehandeld, zonder interferentie van andere lopende jobs.
+    
+    Dit gedrag simuleert als het ware een wachtrij op het niveau van de bestellingen, terwijl per bestelling de interne producten in volgorde worden afgewerkt. Hierdoor is parallelle verwerking nog niet nodig en wordt race-conditions vermeden.
+    
+    
+    \item Meerdere bestellingen kort na elkaar worden netjes in wachtrij geplaatst dankzij Jenkins' ingebouwde jobbeheer. In de jobconfiguratie werd geactiveerd dat builds niet gelijktijdig mogen starten ( “Do not allow concurrent builds”). Hierdoor wordt gewaarborgd dat slechts één build tegelijk actief is per project. Nieuwe webhooks worden wel meteen ontvangen, maar pas uitgevoerd als de vorige printtaak is afgerond.
 \end{itemize}
+
+\subsection{E-mail bij foutmelding (uitbreidbaar)}
+Indien gewenst kan er een aparte foutmeldingsserver voorzien worden die bij een printfout automatisch een e-mail stuurt naar de beheerder. De pipeline kan via een eenvoudige HTTP-call deze server aanroepen bij fouten. De Express-mailserver kan er als volgt uitzien:
+
+\begin{lstlisting}[language=javascript, caption=Express-server voor foutnotificatie per e-mail]
+    const express = require('express');
+    const nodemailer = require('nodemailer');
+    const app = express();
+    app.use(express.json());
+    
+    app.post('/notify', async (req, res) => {
+        const { subject, message } = req.body;
+        const transporter = nodemailer.createTransport({
+            service: 'Gmail',
+            auth: {
+                user: 'jouwmail@gmail.com',
+                pass: 'jouwappwachtwoord'
+            }
+        });
+        
+        try {
+            await transporter.sendMail({
+                from: '"Printmonitor" <jouwmail@gmail.com>',
+                to: 'beheerder@voorbeeld.com',
+                subject,
+                text: message
+            });
+            res.sendStatus(200);
+        } catch (err) {
+            console.error(err);
+            res.sendStatus(500);
+        }
+    });
+    
+    app.listen(4000, () => console.log('Notifier actief op poort 4000'));
+\end{lstlisting}
+
+In de Jenkins pipeline zou je bij een fout in de printerstatus een melding kunnen laten sturen zoals hieronder. Deze uitbreiding werd niet meer getest tijdens Fase 3.
+
+\begin{lstlisting}[language=groovy]
+    if (state == "Error") {
+        sh """
+        curl -X POST http://localhost:4000/notify \\
+        -H "Content-Type: application/json" \\
+        -d '{"subject":"Printerfout", "message":"Fout opgetreden bij printen van ${bestandNaam}."}'
+        """
+        error "❌ Fout opgetreden tijdens printen!"
+    }
+\end{lstlisting}
 
 \subsection{Afsluitende Opmerkingen}
 \begin{itemize}
-    \item Niet alle packages uit \texttt{requirements.txt} werden uiteindelijk gebruikt.
-    \item Voor productie is het aanbevolen om Jenkins permanent lokaal te draaien op een Raspberry Pi in plaats van via Ngrok.
-    \item Curl-aanpak zal in Fase 4 verder worden geoptimaliseerd en mogelijk vervangen door Python-scripts indien dit voordelen biedt.
+    \item Niet alle packages uit \texttt{requirements.txt} werden effectief gebruikt.
+    \item Voor productieomgevingen wordt aanbevolen om Jenkins permanent lokaal te draaien op een Raspberry Pi, in plaats van tijdelijk via Ngrok.
+    \item De directe \texttt{curl}-aanpak bood meer controle en eenvoud vergeleken met externe bibliotheken zoals \texttt{moonrakerpy}.
+    \item De configuratie van Jenkins voorkomt race conditions bij meerdere bestellingen, wat cruciaal is voor correcte uitvoering.
 \end{itemize}
 
 \subsection{Besluit Fase 3}
-Op basis van de testresultaten blijft Jenkins de meest geschikte CI/CD-tool voor het project. De pipeline zal verder verfijnd worden in Fase 4, met aandacht voor fouttolerantie, performantie en onderhoudsgemak.
+De Jenkins-pipeline bleek stabiel en robuust onder normale omstandigheden en bij gecontroleerde fouten. Door het verbod op gelijktijdige builds worden bestellingen veilig sequentieel verwerkt, wat een betrouwbare flow oplevert.
 
 
 
