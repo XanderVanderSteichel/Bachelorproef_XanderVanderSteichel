@@ -256,6 +256,55 @@ Door deze strategieën toe te passen, kan een efficiënte pipeline worden ontwik
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+\section{Revisie: Overstap naar Ender V2, Klipper, MainsailOS en Moonraker}
+\label{ch:revisie}
+
+Recentelijk is de keuze gemaakt om de eerdere printerconfiguratie te vervangen door de Ender V2 van Creality. Deze printer wordt nu aangestuurd met de firmware \textbf{Klipper}, die bekend staat om zijn flexibiliteit en snelheid. Klipper verdeelt de rekentaken naar een externe computer, waardoor de printerhardware optimaal wordt aangestuurd. Deze architectuur leidt tot een hogere printkwaliteit en betere foutafhandeling dan traditionele firmware-oplossingen~\autocite{klipper3dDoc}.
+\\\\
+Voor de besturing en monitoring wordt \textbf{MainsailOS} ingezet. MainsailOS biedt een gebruiksvriendelijke interface voor printers die op Klipper draaien. Samen met \textbf{Moonraker} – een API-server die de communicatie met de Klipper firmware faciliteert – biedt het realtime inzicht in de printerstatus en kunnen printopdrachten efficiënt worden beheerd~\autocite{moonrakerDoc}. Moonraker functioneert als een brug tussen de backend van Klipper en de gebruikersinterface van MainsailOS en levert een breed scala aan API-eindpunten voor statusupdates, bedieningsopdrachten en foutmeldingen~\autocite{moonrakerDoc}.
+\\\\
+Een belangrijke wijziging in de huidige implementatie is de manier waarop de API wordt aangesproken. Waar voorheen integraties met specifieke Python-API’s werden toegepast, is er nu gekozen voor het gebruik van \textbf{curl-commando’s} om RESTful API-aanroepen uit te voeren. Deze aanpak biedt een eenvoudiger, platformonafhankelijke methode voor het versturen van verzoeken. Hierdoor kunnen bijvoorbeeld opdrachten voor het starten van een print, het ophalen van printstatistieken of het aanpassen van printerparameters direct via de commandoregel worden uitgevoerd. Dit versnelt de workflow aanzienlijk en vereenvoudigt het debuggen en onderhouden van de API-integraties~\autocite{mainsailManual}.
+\\\\
+Kortom, de overstap naar de Ender V2 in combinatie met Klipper, MainsailOS en Moonraker vertegenwoordigt een strategische keuze om de printsnelheid, nauwkeurigheid en gebruiksvriendelijkheid te verhogen. Het gebruik van curl-commando’s voor API-aanroepen zorgt daarnaast voor een meer universele aanpak bij het integreren van externe systemen, hetgeen essentieel is voor de verdere automatisering van orderverwerking en printprocessen in een e-commerce omgeving.
+
+
+
+
 % Tip: Begin elk hoofdstuk met een paragraaf inleiding die beschrijft hoe
 % dit hoofdstuk past binnen het geheel van de bachelorproef. Geef in het
 % bijzonder aan wat de link is met het vorige en volgende hoofdstuk.

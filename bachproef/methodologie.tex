@@ -781,6 +781,39 @@ In deze fase werd de Jenkins-oplossing onderworpen aan een reeks functionele en 
     \item Meerdere bestellingen kort na elkaar worden netjes in wachtrij geplaatst dankzij Jenkins' ingebouwde jobbeheer. In de jobconfiguratie werd geactiveerd dat builds niet gelijktijdig mogen starten ( “Do not allow concurrent builds”). Hierdoor wordt gewaarborgd dat slechts één build tegelijk actief is per project. Nieuwe webhooks worden wel meteen ontvangen, maar pas uitgevoerd als de vorige printtaak is afgerond.
 \end{itemize}
 
+\subsection{Timing: Van Bestelling tot Printstart}
+
+Tijdens het testen werd ook de tijd gemeten tussen het ontvangen van een bestelling (via webhook) en het daadwerkelijke starten van het printproces. Gemiddeld bleek dit tussen de 45 en 50 seconden te liggen, afhankelijk van factoren zoals bestandsgrootte, wachttijd op printerstatus en netwerkvertraging. Deze tijd omvat:
+
+\begin{itemize}
+    \item Ontvangst en verwerking van de webhook.
+    \item Parsing van de productinformatie.
+    \item Controle op aanwezigheid van het G-code bestand.
+    \item Eventuele upload naar de printer.
+    \item Homing van de printer (G28).
+    \item Toevoegen van de job aan de wachtrij.
+    \item Starten van de printopdracht.
+\end{itemize}
+
+Deze korte reactietijd is geschikt voor prototyping en kleine oplages, waarbij snelheid belangrijk is en elke opdracht snel moet starten zonder handmatige tussenkomst.
+
+\subsection{Schaalbaarheid: Wat bij Meerdere Printers?}
+
+In de huidige configuratie is er slechts één printer gekoppeld per Jenkins-pipeline. Dit vereenvoudigt de foutafhandeling en statusopvolging, maar beperkt uiteraard de verwerkingssnelheid. Voor scenario’s met meerdere printers zijn er verschillende uitbreidingsopties:
+
+\begin{itemize}
+    \item \textbf{Parallelle Pipelines:} Per printer kan een aparte Jenkins-job opgezet worden, elk met een unieke printer-URL. Door gebruik te maken van Jenkins labels of agents, kunnen builds verdeeld worden over meerdere fysieke machines of containers.
+    
+    \item \textbf{Printerrouter:} Een centrale dispatcher (bijvoorbeeld een Node.js of Python microservice) kan inkomende bestellingen verdelen over beschikbare printers op basis van hun status (bijv. 'idle'). Dit systeem kan gekoppeld worden aan een queue, zoals RabbitMQ of Redis Streams, met logica voor load balancing.
+    
+    \item \textbf{Per-printer wachtrijen:} Elke printer krijgt zijn eigen wachtrij met eigen verwerkingslogica. Zo vermijd je race conditions en kunnen verschillende bestellingen onafhankelijk verwerkt worden.
+    
+    \item \textbf{Printercluster configuratie:} Indien Moonraker meerdere printers ondersteunt via aparte API-instances, kan een supervisorproces de status van elk endpoint monitoren en opdrachten toewijzen op basis van beschikbaarheid.
+\end{itemize}
+
+Voor een doe-het-zelf (DIY) opzet is het aan te raden klein te starten: met twee printers en één centrale webhookserver die het routeringsprobleem oplost. In een latere fase kan dit uitgebouwd worden met persistente queues en automatische foutafhandeling per printer.
+
+
 \subsection{E-mail bij foutmelding (uitbreidbaar)}
 Indien gewenst kan er een aparte foutmeldingsserver voorzien worden die bij een printfout automatisch een e-mail stuurt naar de beheerder. De pipeline kan via een eenvoudige HTTP-call deze server aanroepen bij fouten. De Express-mailserver kan er als volgt uitzien:
 
