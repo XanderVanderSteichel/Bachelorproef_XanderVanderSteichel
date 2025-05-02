@@ -103,7 +103,7 @@ Deze lijst is opgesteld op basis van de initiële projectdoelen en inzichten uit
     
     \begin{figure}[H]  % Use [H] to prevent floating
         \centering
-        \includegraphics[width=0.5\textwidth]{Flowchart.png}  % Adjust width if necessary
+        \includegraphics[width=0.5\textwidth]{foto's/Flowchart.png}  % Adjust width if necessary
         \caption{Flowchart van verschillende fasen en deliverables van de bachelorproef.}
         \label{fig:flowchart}  % Label for referencing
     \end{figure}
@@ -132,21 +132,15 @@ Deze lijst is opgesteld op basis van de initiële projectdoelen en inzichten uit
                 
                 % Fase 2: Proof of Concept (PoC)
                 \ganttbar[
-                progress=0,
+                progress=100,
                 name=poc
                 ]{Fase 2: Proof-of-Concept}{2025-02-21}{2025-04-04} \\
                 
                 % Fase 3: Experimenten en Testen
                 \ganttbar[
-                progress=0,
+                progress=100,
                 name=testen
-                ]{Fase 3: Testen van de Pipelines en Prestatieanalyse}{2025-04-05}{2025-04-18} \\
-                
-                % Fase 4: Iteratieve Ontwikkeling en Optimalisatie
-                \ganttbar[
-                progress=0,
-                name=optimalisatie
-                ]{Fase 4: Keuze van de Beste Pipeline en Optimalisatie}{2025-04-19}{2025-04-25} \\
+                ]{Fase 3: Testen en Optimalisatie van de Geselecteerde Pipeline}{2025-04-05}{2025-04-25} \\
                 
             \end{ganttchart}
         }
@@ -804,14 +798,10 @@ In de huidige configuratie is er slechts één printer gekoppeld per Jenkins-pip
 \begin{itemize}
     \item \textbf{Parallelle Pipelines:} Per printer kan een aparte Jenkins-job opgezet worden, elk met een unieke printer-URL. Door gebruik te maken van Jenkins labels of agents, kunnen builds verdeeld worden over meerdere fysieke machines of containers.
     
-    \item \textbf{Printerrouter:} Een centrale dispatcher (bijvoorbeeld een Node.js of Python microservice) kan inkomende bestellingen verdelen over beschikbare printers op basis van hun status (bijv. 'idle'). Dit systeem kan gekoppeld worden aan een queue, zoals RabbitMQ of Redis Streams, met logica voor load balancing.
+    \item \textbf{Printerrouter:} Een centrale dispatcher (bijvoorbeeld een Node.js of Python microservice) kan inkomende bestellingen verdelen over beschikbare printers op basis van hun status (bijv. 'idle').
     
     \item \textbf{Per-printer wachtrijen:} Elke printer krijgt zijn eigen wachtrij met eigen verwerkingslogica. Zo vermijd je race conditions en kunnen verschillende bestellingen onafhankelijk verwerkt worden.
-    
-    \item \textbf{Printercluster configuratie:} Indien Moonraker meerdere printers ondersteunt via aparte API-instances, kan een supervisorproces de status van elk endpoint monitoren en opdrachten toewijzen op basis van beschikbaarheid.
 \end{itemize}
-
-Voor een doe-het-zelf (DIY) opzet is het aan te raden klein te starten: met twee printers en één centrale webhookserver die het routeringsprobleem oplost. In een latere fase kan dit uitgebouwd worden met persistente queues en automatische foutafhandeling per printer.
 
 
 \subsection{E-mail bij foutmelding (uitbreidbaar)}
@@ -872,7 +862,7 @@ In de Jenkins pipeline zou je bij een fout in de printerstatus een melding kunne
 \end{itemize}
 
 \subsection{Besluit Fase 3}
-De Jenkins-pipeline bleek stabiel en robuust onder normale omstandigheden en bij gecontroleerde fouten. Door het verbod op gelijktijdige builds worden bestellingen veilig sequentieel verwerkt, wat een betrouwbare flow oplevert.
+De Jenkins-pipeline bleek stabiel en robuust onder normale omstandigheden en bij gecontroleerde fouten. Door het verbod op gelijktijdige builds worden bestellingen veilig sequentieel verwerkt, wat een betrouwbare flow oplevert. Er zijn ook nog tal van mogelijkheden om de configuratie te verbeteren of uit te gaan breiden. Maar op deze manier aan de slag gaan, lijkt een goedkope en innovatieve oplossing.
 
 
 

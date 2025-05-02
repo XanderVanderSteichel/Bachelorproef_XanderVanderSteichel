@@ -30,13 +30,13 @@ De meest mature oplossing op technisch vlak was \textbf{PoC 1}, die het volledig
 
 \section*{Bijdrage aan het domein}
 
-Het project toont aan dat CI/CD-tools niet enkel nuttig zijn voor softwaredeployments, maar ook als coördinatieplatform kunnen dienen voor fysieke processen zoals 3D-printing. Deze benadering is relatief ongezien, en biedt een laagdrempelige automatisatie-oplossing aan voor kleine ondernemingen die geen toegang hebben tot complexe productielijnen of gespecialiseerde MES-software.
+Het project toont aan dat CI/CD-tools niet enkel nuttig zijn voor softwaredeployments, maar ook als coördinatieplatform kunnen dienen voor fysieke processen zoals 3D-printing. Deze benadering is relatief ongezien, en biedt een laagdrempelige automatisatie-oplossing aan voor kleine ondernemingen die geen toegang hebben tot complexe productielijnen of gespecialiseerde software.
 
 \section*{Kritische reflectie}
 
-De pipelines functioneren stabiel en robuust, maar vereisen wel enige technische setup, vooral qua netwerkinstellingen (zoals ngrok of port forwarding). In een productiecontext zou een meer beveiligde oplossing vereist zijn.
-
-Ook blijft foutafhandeling aan de printerkant een uitdaging. Hoewel de pipeline printerfouten detecteert via de Moonraker API, kunnen problemen zoals mechanische falen of slecht gelevelde bedden enkel deels worden opgevangen.
+De pipelines functioneren stabiel en robuust, maar vereisen wel enige technische setup, vooral qua netwerkinstellingen (zoals ngrok of port forwarding). In een productiecontext zou een meer beveiligde oplossing vereist zijn zoals het lokaal draaien op een externe Rasberry Pi.
+\\\\
+Ook blijft foutafhandeling aan de printerkant een uitdaging. Hoewel de pipeline printerfouten detecteert via de Moonraker API, kunnen problemen zoals mechanische falen of slecht gelevelde bedden enkel deels worden opgevangen. Moest er een camera aangesloten zijn zou er al geprobeerd kunnen worden om er AI detectie op te  zetten. Dit wordt bijvoorbeeld bij de Bambulab toegepast.
 
 \section*{Vervolgonderzoek}
 
@@ -46,7 +46,7 @@ Er zijn meerdere opportuniteiten voor vervolgonderzoek:
     \item Integratie met meerdere printers tegelijk, en load balancing.
     \item Integratie met order- en voorraadbeheer (bv. automatisch printen bij lage stock).
     \item Meer verfijnde foutafhandeling en recovery-opties (bv. notificaties via mail of Discord).
-    \item Een visuele interface om printstatussen op te volgen.
+    \item Een visuele interface om printstatussen op te volgen als je meerdere printers hebt.
 \end{itemize}
 
 \bigskip
