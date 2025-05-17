@@ -104,7 +104,7 @@ Deze lijst is opgesteld op basis van de initiële projectdoelen en inzichten uit
     \begin{figure}[H]  % Use [H] to prevent floating
         \centering
         \includegraphics[width=0.5\textwidth]{foto's/Flowchart.png}  % Adjust width if necessary
-        \caption{Flowchart van verschillende fasen en deliverables van de bachelorproef.}
+        \caption{Flowchart van verschillende fasen en deliverables van de bachelorproef (eigen ontwerp).}
         \label{fig:flowchart}  % Label for referencing
     \end{figure}
     
@@ -267,7 +267,7 @@ Onderstaande stappen beschrijven de volledige opzet- en uitvoeringsproces van de
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{foto's/ngrokWithJenkins.png}
-    \caption{Docker Jenkins Container + Ngrok terminal output.}
+    \caption{Docker Jenkins Container + Ngrok terminal output. (eigen ontwerp)}
     \label{fig:Ngrok-terminal}
 \end{figure}
 
@@ -286,7 +286,7 @@ Onderstaande stappen beschrijven de volledige opzet- en uitvoeringsproces van de
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{foto's/ShopifyWebhookConfig.png}
-    \caption{Shopify webhook-configuratie.}
+    \caption{Shopify webhook-configuratie. (eigen ontwerp)}
     \label{fig:Shopify-Webhook-configuratie}
 \end{figure}
 
@@ -386,7 +386,7 @@ Zodra alles correct is voorbereid, worden via CURL-commando’s drie instructies
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{foto's/JenkinsHome.png}
-    \caption{bestand in map \texttt{jenkins\_home} zichtbaar via Jenkins console voor .3mf.}
+    \caption{bestand in map \texttt{jenkins\_home} zichtbaar via Jenkins console voor .3mf. (eigen ontwerp)}
     \label{fig:Jenkins_home}
 \end{figure}
 
@@ -402,7 +402,7 @@ Zodra alles correct is voorbereid, worden via CURL-commando’s drie instructies
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.3\linewidth]{foto's/Ender3WithRaspberryPi.JPG}
-    \caption{Raspberry Pi + Ender 3 V2 setup.}
+    \caption{Raspberry Pi + Ender 3 V2 setup. (eigen ontwerp)}
     \label{fig:3Dprinter}
 \end{figure}
 
@@ -528,7 +528,7 @@ Bij ontvangst van een \texttt{repository\_dispatch} wordt deze pipeline uitgevoe
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.3\linewidth]{foto's/Github/Schermafbeelding 2025-04-22 161449.png}
-    \caption{mappenstructuur in de GitHub repository}
+    \caption{mappenstructuur in de GitHub repository (eigen ontwerp)}
     \label{fig:Github_Repo}
 \end{figure}
 
@@ -547,7 +547,7 @@ ngrok http 7125
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{foto's/Github/GithubPrintSucces.png}
-    \caption{Voorbeeld van een succesvolle GitHub Actions run}
+    \caption{Voorbeeld van een succesvolle GitHub Actions run (eigen ontwerp)}
     \label{fig:Github_Succes}
 \end{figure}
 
@@ -630,7 +630,7 @@ Het volgende \texttt{.gitlab-ci.yml} bestand wordt gebruikt om de printopdracht 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.3\linewidth]{foto's/Gitlab/folder.png}
-    \caption{mappenstructuur in de GitLab repository}
+    \caption{mappenstructuur in de GitLab repository (eigen ontwerp)}
     \label{fig:GitLab_Repo}
 \end{figure}
 
@@ -645,14 +645,27 @@ Tijdens de PoC is gebleken dat het gebruik van rechtstreekse \texttt{curl}-comma
 \end{itemize}
 
 \section{Besluit}
+
 Op basis van de uitgevoerde tests is \textbf{Jenkins} geselecteerd als meest geschikte tool voor verdere uitwerking. Belangrijke redenen zijn:
+
 \begin{itemize}
     \item Volledig lokaal beheer.
     \item Flexibiliteit en uitbreidbaarheid.
     \item Geen externe afhankelijkheden of veiligheidsrisico’s.
+    \item Kostenefficiëntie t.o.v. andere CI/CD-oplossingen.
 \end{itemize}
 
-Er is beslist om de Jenkins-oplossing verder te optimaliseren in de volgende fase van het project.
+Naast technische overwegingen speelde ook de \textbf{prijs} een rol in de uiteindelijke keuze. In Figuur~\ref{fig:kosten} is een vergelijking te zien van de maandelijkse kostprijs van de gebruikte tools. Hoewel \textbf{GitLab CI/CD (Self-hosted)} op papier ook gratis is, biedt het in de praktijk minder functionaliteit en integratiemogelijkheden dan Jenkins, waardoor Jenkins in dit project meer geschikt was.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{foto's/Grafieken/KostenMaandelijks.png}
+    \caption{Vergelijking van maandelijkse kosten per tool. (eigen ontwerp)}
+    \label{fig:kosten}
+\end{figure}
+
+Er is dus beslist om de Jenkins-oplossing verder te optimaliseren in de volgende fase van het project.
+
 
 \chapter{\IfLanguageName{dutch}{Testen en Prestatieanalyse}{Testing and Performance Analysis}}%
 \label{ch:test-en-prestatie}
@@ -777,7 +790,7 @@ In deze fase werd de Jenkins-oplossing onderworpen aan een reeks functionele en 
 
 \subsection{Timing: Van Bestelling tot Printstart}
 
-Tijdens het testen werd ook de tijd gemeten tussen het ontvangen van een bestelling (via webhook) en het daadwerkelijke starten van het printproces. Gemiddeld bleek dit tussen de 45 en 50 seconden te liggen, afhankelijk van factoren zoals bestandsgrootte, wachttijd op printerstatus en netwerkvertraging. Deze tijd omvat:
+Tijdens het testen werd ook de tijd gemeten tussen het ontvangen van een bestelling (via webhook) en het daadwerkelijke starten van het printproces. Gemiddeld bleek dit tussen de 44 en 48 seconden te liggen, afhankelijk van factoren zoals bestandsgrootte, wachttijd op printerstatus en netwerkvertraging. Deze tijd omvat:
 
 \begin{itemize}
     \item Ontvangst en verwerking van de webhook.
@@ -788,6 +801,14 @@ Tijdens het testen werd ook de tijd gemeten tussen het ontvangen van een bestell
     \item Toevoegen van de job aan de wachtrij.
     \item Starten van de printopdracht.
 \end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{foto's/Grafieken/Van Bestelling tot Printstart.png}
+    \caption{Boxplot van de gemeten tijd tussen bestelling en printstart (in seconden, eigen ontwerp).}
+    \label{fig:timing_boxplot}
+\end{figure}
+
 
 Deze korte reactietijd is geschikt voor prototyping en kleine oplages, waarbij snelheid belangrijk is en elke opdracht snel moet starten zonder handmatige tussenkomst.
 
